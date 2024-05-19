@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('number_of_posts')->default(0);
             $table->integer('number_of_favorites')->default(0);
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
         });
     }
 
