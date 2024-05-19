@@ -44,4 +44,5 @@
             </x-primary-button>
         </div>
     </form>
+    <a href="/">back</a>
 </x-guest-layout>
