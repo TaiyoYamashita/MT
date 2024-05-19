@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('image_url')->nullable();
+            $table->string('image_url')->default;
             //$table->rememberToken();
             //$table->timestamps();
-            $table->integer('number_of_posts');
-            $table->integer('number_of_favorites');
+            $table->integer('number_of_posts')->default(0);
+            $table->integer('number_of_favorites')->default(0);
         });
     }
 
