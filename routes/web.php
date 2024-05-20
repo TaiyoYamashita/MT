@@ -22,6 +22,7 @@ Route::get('/', function () {
 */
 
 Route::get('/', [MTController::class, 'top']);
+Route::get('/aaa', [MTController::class, 'aaa']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

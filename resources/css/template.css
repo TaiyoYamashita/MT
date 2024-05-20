@@ -1,0 +1,15 @@
+.header{
+    background-color: rgb(195, 133, 224);
+    height: 30px;
+    width: 100%;
+}
+
+.header h4{
+    float: left;
+}
+
+.menu{
+    background-color: rgb(195, 133, 224);
+    height: 100%;
+    width: 50px;
+}
