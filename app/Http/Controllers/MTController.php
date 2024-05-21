@@ -10,7 +10,23 @@ class MTController extends Controller
         return view('WELCOME');
     }
     
-    public function aaa(){
-        return view('template');
+    public function everybody(){
+        return view('everybody');
+    }
+    
+    public function genre(){
+        return view('genre');
+    }
+    
+    public function history(){
+        return view('history');
+    }
+    
+    public function favorite(){
+        return view('favorite');
+    }
+    
+    public function posted(){
+        return view('posted');
     }
 }
