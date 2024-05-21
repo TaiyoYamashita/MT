@@ -22,6 +22,12 @@ Route::get('/', function () {
 */
 
 Route::get('/', [MTController::class, 'top']);
+Route::get('/everybody', [MTController::class, 'everybody']);
+Route::get('/genre', [MTController::class, 'genre']);
+Route::get('/history', [MTController::class, 'history']);
+Route::get('/favorite', [MTController::class, 'favorite']);
+Route::get('/saved', [MTController::class, 'saved']);
+Route::get('/posted', [MTController::class, 'posted']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
