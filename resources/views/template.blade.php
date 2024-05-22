@@ -1,13 +1,13 @@
+@section('template')
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        <title>Mail Template</title>
         <link href="/MT/resources/css/template.css" rel="stylesheet">
     </head>
     <body>
-        @yield('template')
         <header>
             <div class="header-left">
                 <h1>Mail Template</h1>
@@ -30,3 +30,4 @@
         </div>
     </body>
 </html>
+@show

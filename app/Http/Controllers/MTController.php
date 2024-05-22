@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post; //モデルも使用宣言をする
 
 class MTController extends Controller
 {
@@ -10,8 +12,8 @@ class MTController extends Controller
         return view('WELCOME');
     }
     
-    public function everybody(){
-        return view('everybody');
+    public function everybody(User $user, Post $posts){
+        return view('everybody')->with(['posts' => $posts->get()]);
     }
     
     public function genre(){
