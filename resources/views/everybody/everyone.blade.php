@@ -1,24 +1,25 @@
 @extends('template')
 
+@section('read css')
+    <link rel="stylesheet" href="everybody.css">
+@endsection
+
 @section('var')
     みんなの投稿
 @endsection
 
 @section('contents')
-    <div class="container" style="padding: 20px">
-        <?php $cnt=0; ?>
-        @foreach ($posts as $post)
-            @if ($cnt==0)
-                <div class='post' style="float: left">
-                <?php $cnt=1; ?>
-            @else
-                <div class='post'>
-                <?php $cnt=0; ?>
-            @endif
-                <h2>{{ $post->title }}</h2>
-                <p>{{ $post->name }}</p>
-                <p>{{ $post->saved_or_posted_at }}</p>
-            </div>
-        @endforeach
-    </div>
+    <?php $cnt=0; ?>
+    @foreach ($posts as $post)
+        <div class='post'>
+            <h2>{{ $post->title }}</h2>
+            <p>{{ $post->name }}</p>
+            <p>{{ $post->saved_or_posted_at }}</p>
+        </div>
+        <?php ++$cnt ?>
+        @if ($cnt==4)
+            <div class="clear"></div>
+            <?php $cnt=0 ?>
+        @endif
+    @endforeach
 @endsection

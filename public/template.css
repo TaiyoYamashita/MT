@@ -50,6 +50,7 @@ header {
     position: fixed;
     top: 50px;
     width: 150px;
+    z-index: 1;
 }
 
 ul {
@@ -86,7 +87,7 @@ li a {
     margin: auto;
 }
 
-.contents{
+.container {
     position: absolute;
     top: 90px;
     left: 150px;
