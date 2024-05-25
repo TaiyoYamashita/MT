@@ -1,7 +1,8 @@
 <?php
+URL::forceScheme('https');
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MTController;
+use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,15 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::get('/tmp', [MTController::class, 'tmp']);
-Route::get('/', [MTController::class, 'top']);
-Route::get('/aa', [MTController::class, 'tmp']);
-Route::get('/everybody', [MTController::class, 'everybody']);
-Route::get('/genre', [MTController::class, 'genre']);
-Route::get('/history', [MTController::class, 'history']);
-Route::get('/favorite', [MTController::class, 'favorite']);
-Route::get('/saved', [MTController::class, 'saved']);
-Route::get('/posted', [MTController::class, 'posted']);
+
+Route::controller(TemplateController::class)->group(function () {
+    Route::get('/', 'top');
+    Route::get('/template.css', 'template');
+    Route::get('/everybody', 'everybody');
+    Route::get('/genre', 'genre');
+    Route::get('/history', 'history');
+    Route::get('/favorite', 'favorite');
+    Route::get('/saved', 'saved');
+    Route::get('/posted', 'posted');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

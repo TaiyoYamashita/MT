@@ -68,12 +68,6 @@ li a {
     text-decoration: none;
 }
 
-.container {
-    position: absolute;
-    top: 70px;
-    left: 150px;
-}
-
 .var {
     align-items: center;
     display: flex;
@@ -90,4 +84,11 @@ li a {
     color:azure;
     font-size: 20px;
     margin: auto;
+}
+
+.contents{
+    position: absolute;
+    top: 90px;
+    left: 150px;
+    width: 100%;
 }
