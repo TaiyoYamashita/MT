@@ -20,8 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-
+Route::get('/tmp', [MTController::class, 'tmp']);
 Route::get('/', [MTController::class, 'top']);
+Route::get('/aa', [MTController::class, 'tmp']);
 Route::get('/everybody', [MTController::class, 'everybody']);
 Route::get('/genre', [MTController::class, 'genre']);
 Route::get('/history', [MTController::class, 'history']);
