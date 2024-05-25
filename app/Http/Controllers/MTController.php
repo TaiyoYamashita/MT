@@ -8,6 +8,10 @@ use App\Models\Post; //モデルも使用宣言をする
 
 class MTController extends Controller
 {
+    public function tmp(){
+        return view('template');
+    }
+    
     public function top(){
         return view('WELCOME');
     }
