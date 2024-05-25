@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mail Template</title>
         <link rel="stylesheet" href="template.css">
+        @yield('read css')
     </head>
     <body>
         <header>
@@ -30,7 +31,7 @@
         <div class="var">
             <h2>@yield('var')</h2>
         </div>
-        <div class="contents">
+        <div class="container">
             @yield('contents')
         </div>
     </body>
