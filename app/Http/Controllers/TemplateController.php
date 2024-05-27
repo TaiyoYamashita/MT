@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post; //モデルも使用宣言をする
 
@@ -31,8 +32,8 @@ class TemplateController extends Controller
         return view('history.histories');
     }
     
-    public function saved(){
-        return view('saved.saves');
+    public function saved(User $user){
+        return view('saved.saves')->with(['own_posts' => $user->getOwnPaginateByLimit()]);
     }
     
     public function favorite(){
