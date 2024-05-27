@@ -5,5 +5,12 @@
 @endsection
 
 @section('contents')
-    <p>a</p>
+    <a href="/create">新規作成</a>
+    @foreach($own_posts as $post)
+        <h4>{{ $post->title }}</h4>
+        <p>{{ $post->sentences }}</p>
+    @endforeach
+    <div class="paginate">
+        {{ $own_posts->links() }}
+    </div>
 @endsection

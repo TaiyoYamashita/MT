@@ -3,6 +3,7 @@ URL::forceScheme('https');
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\SavedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,11 @@ Route::controller(TemplateController::class)->group(function () {
     Route::get('/favorite', 'favorite');
     Route::get('/saved', 'saved');
     Route::get('/posted', 'posted');
+});
+
+Route::controller(SavedController::class)->group(function () {
+    Route::get('/create', 'create');
+    Route::post('/saved', 'store');
 });
 
 Route::get('/dashboard', function () {
