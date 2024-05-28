@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('sentences');
             $table->string('memorandum')->nullable();
             $table->integer('private_or_public')->default(0);
+            $table->timestamp('posted_at')->nullable();
             $table->timestamps();
         });
     }

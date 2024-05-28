@@ -10,11 +10,12 @@
 
 @section('contents')
     <?php $cnt=0; ?>
-    @foreach ($posts as $post)
+    @foreach ($all_posts as $post)
         <div class='post'>
             <h2>{{ $post->title }}</h2>
-            <p>{{ $post->name }}</p>
-            <p>{{ $post->saved_or_posted_at }}</p>
+            <p>{{ $post->sentences }}</p>
+            <small>{{ $post->user->name }}</small>
+            <small>{{ $post->posted_at }}</small>
         </div>
         <?php ++$cnt ?>
         @if ($cnt==4)
