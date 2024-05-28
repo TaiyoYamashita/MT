@@ -21,7 +21,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     
-    function getPaginateByLimit(int $limit=20)
+    function getPublicPaginateByLimit(int $limit=20)
     {
         return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit);
     }

@@ -20,8 +20,8 @@ class TemplateController extends Controller
         return view('WELCOME');
     }
     
-    public function everybody(User $user, Post $posts){
-        return view('everybody.everyone')->with(['posts' => $posts->get()]);
+    public function everybody(User $user){
+        return view('everybody.everyone')->with(['all_posts' => $user->getPublicPaginateByLimit()]);
     }
     
     public function genre(){
@@ -33,14 +33,14 @@ class TemplateController extends Controller
     }
     
     public function saved(User $user){
-        return view('saved.saves')->with(['own_posts' => $user->getOwnPaginateByLimit()]);
+        return view('saved.saves')->with(['own_posts' => $user->getSavedPaginateByLimit()]);
     }
     
     public function favorite(){
         return view('favorite.favorites');
     }
     
-    public function posted(){
-        return view('posted.posts');
+    public function posted(User $user){
+        return view('posted.posts')->with(['own_posts' => $user->getPostedPaginateByLimit()]);
     }
 }

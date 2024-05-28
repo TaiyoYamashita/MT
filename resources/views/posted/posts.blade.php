@@ -5,5 +5,11 @@
 @endsection
 
 @section('contents')
-    <p>a</p>
+    @foreach($own_posts as $post)
+        <h4>{{ $post->title }}</h4>
+        <p>{{ $post->sentences }}</p>
+    @endforeach
+    <div class="paginate">
+        {{ $own_posts->links() }}
+    </div>
 @endsection

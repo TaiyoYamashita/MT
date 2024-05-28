@@ -35,8 +35,11 @@ Route::controller(TemplateController::class)->group(function () {
 });
 
 Route::controller(SavedController::class)->group(function () {
-    Route::get('/create', 'create');
+    Route::get('/saved/create', 'create');
+    Route::get('/saved/{post}', 'show');
+    Route::get('/saved/{post}/edit', 'edit');
     Route::post('/saved', 'store');
+    Route::put('/saved/{post}', 'update');
 });
 
 Route::get('/dashboard', function () {
