@@ -13,7 +13,9 @@ class Post extends Model
         'user_id',
         'title',
         'sentences',
-        'memorandum'
+        'memorandum',
+        'private_or_public',
+        'posted_at'
     ];
     
     public function user()

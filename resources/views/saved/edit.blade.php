@@ -7,14 +7,14 @@
 @section('contents')
     <form action="/saved/{{ $post->id }}" method="POST">
         @csrf
-        @method('PUT')
+        @method("PUT")
         <div class="title">
             <p>タイトル</p>
             <input type="text" name="post[title]"　value="{{ $post->title }}">
         </div>
         <div class="sentences">
             <p>本文</p>
-            <textarea name="post[sentences]" value="{{ $post->sentences }}"></textarea>
+            <textarea name="post[sentences]" value="{{ $post->sentences }}">{{ $post->sentences }}</textarea>
         </div>
         <div class="memorandum">
             <p>メモ</p>
