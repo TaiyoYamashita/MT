@@ -12,7 +12,7 @@
     <?php $cnt=0; ?>
     @foreach ($all_posts as $post)
         <div class='post'>
-            <h2>{{ $post->title }}</h2>
+            <a href="/every/{{ $post->id }}"><h2>{{ $post->title }}</h2></a>
             <p>{{ $post->sentences }}</p>
             <small>{{ $post->user->name }}</small>
             <small>{{ $post->posted_at }}</small>

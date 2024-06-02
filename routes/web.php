@@ -3,7 +3,9 @@ URL::forceScheme('https');
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\EveryController;
 use App\Http\Controllers\SavedController;
+use App\Http\Controllers\PostedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,12 +36,23 @@ Route::controller(TemplateController::class)->group(function () {
     Route::get('/posted', 'posted');
 });
 
+Route::controller(EveryController::class)->group(function () {
+    Route::get('/every/{post}', 'show');
+    Route::get('/every/{post}/create', 'create');
+});
+
 Route::controller(SavedController::class)->group(function () {
     Route::get('/saved/create', 'create');
     Route::get('/saved/{post}', 'show');
     Route::get('/saved/{post}/edit', 'edit');
-    Route::post('/saved', 'store');
-    Route::put('/saved/{post}', 'update');
+    Route::post('/saved', 'store');                 //新規文章の保存
+    Route::put('/saved/{post}', 'update');          //保存した文章の編集
+    Route::put('/saved/{post}/post', 'post');       //保存した文章の投稿
+});
+
+Route::controller(PostedController::class)->group(function () {
+   Route::get('/posted/{post}', 'show'); 
+   Route::put('/posted/{post}/save', 'save');
 });
 
 Route::get('/dashboard', function () {

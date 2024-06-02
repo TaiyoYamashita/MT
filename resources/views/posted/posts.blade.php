@@ -6,7 +6,7 @@
 
 @section('contents')
     @foreach($own_posts as $post)
-        <h4>{{ $post->title }}</h4>
+        <a href="/posted/{{ $post->id }}"><h4>{{ $post->title }}</h4></a>
         <p>{{ $post->sentences }}</p>
     @endforeach
     <div class="paginate">

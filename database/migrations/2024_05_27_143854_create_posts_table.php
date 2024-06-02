@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('title');
-            $table->string('sentences');
-            $table->string('memorandum')->nullable();
+            $table->text('sentences');
+            $table->text('memorandum')->nullable();
             $table->integer('private_or_public')->default(0);
-            $table->timestamp('posted_at')->nullable();
+            $table->timestamp('posted_at')->nullable;
             $table->timestamps();
         });
     }
