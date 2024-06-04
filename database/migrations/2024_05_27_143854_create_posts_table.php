@@ -20,8 +20,9 @@ return new class extends Migration
             $table->text('sentences');
             $table->text('memorandum')->nullable();
             $table->integer('private_or_public')->default(0);
-            $table->timestamp('posted_at')->nullable;
+            $table->timestamp('posted_at')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable()->default(null);
         });
     }
 

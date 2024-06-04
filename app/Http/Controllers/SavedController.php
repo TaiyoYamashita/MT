@@ -48,4 +48,10 @@ class SavedController extends Controller
         $post->save();
         return redirect('/posted/' . $post->id);
     }
+    
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/saved');
+    }
 }
