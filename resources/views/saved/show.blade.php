@@ -16,5 +16,22 @@
         <input type="submit" value="投稿する"/>
     </form>
     <a href="/saved/{{ $post->id }}/edit">編集する</a>
+    <form action="/saved/{{ $post->id }}" id="form_{{ $post->id }}" method="POST">
+        @csrf
+        @method("DELETE")
+        <button type="button" onclick="deletePost({{ $post->id }})">削除する</button>
+    </form>
     <a href="/saved">戻る</a>
+    
+    <script>
+        function deletePost(id)
+        {
+            'use strict'
+            
+            if (confirm('削除しますか？（削除すると復元することができません。）'))
+            {
+                dobument.getElementById(`form_${id}`).submit();
+            }
+        }
+    </script>
 @endsection

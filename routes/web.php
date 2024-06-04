@@ -48,6 +48,7 @@ Route::controller(SavedController::class)->group(function () {
     Route::post('/saved', 'store');                 //新規文章の保存
     Route::put('/saved/{post}', 'update');          //保存した文章の編集
     Route::put('/saved/{post}/post', 'post');       //保存した文章の投稿
+    Route::delete('/saved/{post}', 'delete');
 });
 
 Route::controller(PostedController::class)->group(function () {
