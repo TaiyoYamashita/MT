@@ -20,8 +20,8 @@ class TemplateController extends Controller
         return view('WELCOME');
     }
     
-    public function everybody(User $user){
-        return view('everybody.everyone')->with(['all_posts' => $user->getPublicPaginateByLimit()]);
+    public function everybody(Post $post){
+        return view('everybody.everyone')->with(['all_posts' => $post->getPublicPaginateByLimit()]);
     }
     
     public function genre(){
