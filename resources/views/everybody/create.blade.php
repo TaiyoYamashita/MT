@@ -9,7 +9,7 @@
         @csrf
         <div class="title">
             <p>タイトル</p>
-            <input type="text" name="post[title]">
+            <input type="text" name="post[title]" value={{ $post->title }}>
         </div>
         <div class="sentences">
             <p>本文</p>

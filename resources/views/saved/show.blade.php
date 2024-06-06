@@ -30,7 +30,7 @@
             
             if (confirm('削除しますか？（削除すると復元することができません。）'))
             {
-                dobument.getElementById(`form_${id}`).submit();
+                document.getElementById(`form_${id}`).submit();
             }
         }
     </script>
