@@ -29,13 +29,13 @@ Route::get('/', [TemplateController::class, 'top']);
 Route::get('/register', [TemplateController::class, 'register']);
 
 Route::controller(TemplateController::class)->middleware(['auth'])->group(function () {
-    Route::get('/template.css', 'template');
     Route::get('/everybody', 'everybody')->name('everybody');
     Route::get('/genre', 'genre')->name('genre');
     Route::get('/history', 'history')->name('history');
     Route::get('/favorite', 'favorite')->name('favorite');
     Route::get('/saved', 'saved')->name('saved');
     Route::get('/posted', 'posted')->name('posted');
+    Route::get('/paper.cpp', 'paper');
 });
 
 Route::controller(EveryController::class)->middleware(['auth'])->group(function () {
@@ -62,10 +62,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::controller(ProfileController::class)->middleware('auth')->group(function () {
+    Route::get('/profile', 'detail')->name('profile.detail');
+    Route::get('/profile/edit', 'edit')->name('profile.edit');
+    Route::patch('/profile', 'update')->name('profile.update');
+    Route::delete('/profile', 'destroy')->name('profile.destroy');
 });
 
 
