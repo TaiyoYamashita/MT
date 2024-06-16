@@ -46,6 +46,7 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
 Route::controller(SavedController::class)->middleware(['auth'])->group(function () {
     Route::get('/saved/create', 'create');
     Route::get('/saved/{post}', 'show');
+    Route::get('/save.css', 'save');
     Route::get('/saved/{post}/edit', 'edit');
     Route::post('/saved', 'store');                 //新規文章の保存
     Route::put('/saved/{post}', 'update');          //保存した文章の編集
