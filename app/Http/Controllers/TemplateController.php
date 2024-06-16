@@ -17,7 +17,11 @@ class TemplateController extends Controller
     }
     
     public function top(){
-        return view('WELCOME');
+        return view('auth.login');
+    }
+    
+    public function register(){
+        return view('auth.register');
     }
     
     public function everybody(Post $post){

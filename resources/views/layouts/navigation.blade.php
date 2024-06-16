@@ -11,11 +11,33 @@
                     </a>
                 </div>
                 -->
+                
+                <div class="logo" style="display:flex; float:left; height:64px; width:150px;">
+                    <h3 style="margin:auto;">Mail Template</h3>
+                </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('everybody')" :active="request()->routeIs('everybody')">
+                        {{ __('みんなの投稿') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('genre')" :active="request()->routeIs('genre')">
+                        {{ __('ジャンルから探す') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('saved')" :active="request()->routeIs('saved')">
+                        {{ __('保存した文章') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('posted')" :active="request()->routeIs('posted')">
+                        {{ __('投稿した文章') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                        {{ __('使用履歴') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('favorite')" :active="request()->routeIs('favorite')">
+                        {{ __('お気に入り') }}
                     </x-nav-link>
                 </div>
             </div>

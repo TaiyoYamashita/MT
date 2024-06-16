@@ -1,10 +1,7 @@
-@extends('template')
-
-@section('var')
-    新規文章の作成
-@endsection
-
-@section('contents')
+<x-app-layout>
+    <x-slot name="header">
+        新規文章の作成
+    </x-slot>
     <form action="/saved" method="POST">
         @csrf
         <div class="title">
@@ -22,4 +19,4 @@
         <input type="submit" value="保存">
     </form>
     <a href="/saved">戻る</a>
-@endsection
+</x-app-layout>

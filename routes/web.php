@@ -25,23 +25,25 @@ Route::get('/', function () {
 });
 */
 
-Route::controller(TemplateController::class)->group(function () {
-    Route::get('/', 'top');
+Route::get('/', [TemplateController::class, 'top']);
+Route::get('/register', [TemplateController::class, 'register']);
+
+Route::controller(TemplateController::class)->middleware(['auth'])->group(function () {
     Route::get('/template.css', 'template');
-    Route::get('/everybody', 'everybody');
-    Route::get('/genre', 'genre');
-    Route::get('/history', 'history');
-    Route::get('/favorite', 'favorite');
-    Route::get('/saved', 'saved');
-    Route::get('/posted', 'posted');
+    Route::get('/everybody', 'everybody')->name('everybody');
+    Route::get('/genre', 'genre')->name('genre');
+    Route::get('/history', 'history')->name('history');
+    Route::get('/favorite', 'favorite')->name('favorite');
+    Route::get('/saved', 'saved')->name('saved');
+    Route::get('/posted', 'posted')->name('posted');
 });
 
-Route::controller(EveryController::class)->group(function () {
+Route::controller(EveryController::class)->middleware(['auth'])->group(function () {
     Route::get('/every/{post}', 'show');
     Route::get('/every/{post}/create', 'create');
 });
 
-Route::controller(SavedController::class)->group(function () {
+Route::controller(SavedController::class)->middleware(['auth'])->group(function () {
     Route::get('/saved/create', 'create');
     Route::get('/saved/{post}', 'show');
     Route::get('/saved/{post}/edit', 'edit');

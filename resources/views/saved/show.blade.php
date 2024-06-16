@@ -1,10 +1,7 @@
-@extends('template')
-
-@section('var')
-    保存した文章
-@endsection
-
-@section('contents')
+<x-app-layout>
+    <x-slot name="header">
+        保存した文章
+    </x-slot>
     <h5 name="post[title]">{{ $post->title }}</h5>
     <small>編集日時：{{ $post->updated_at }}</small>
     <p name="post[sentences]">{{ $post->sentences }}</p>
@@ -34,4 +31,4 @@
             }
         }
     </script>
-@endsection
+</x-app-layout>
