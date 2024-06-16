@@ -13,14 +13,11 @@
                 -->
                 
                 <div class="logo" style="display:flex; float:left; height:64px; width:150px;">
-                    <h3 style="margin:auto;">Mail Template</h3>
+                    <a href="/dashboard" style="margin:auto;"><h3>Mail Template</h3></a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('everybody')" :active="request()->routeIs('everybody')">
                         {{ __('みんなの投稿') }}
                     </x-nav-link>
@@ -58,8 +55,8 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                        <x-dropdown-link :href="route('profile.detail')">
+                            {{ __('プロフィール') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -69,7 +66,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('ログアウト') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

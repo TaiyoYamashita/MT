@@ -9,13 +9,6 @@ use App\Models\Post; //モデルも使用宣言をする
 
 class TemplateController extends Controller
 {
-    public function template(){
-        $path=public_path('template.css');
-        $content=File::get($path);
-        $type=File::mineType($path);
-        return response($content,200)->header('Content-Type',$type);
-    }
-    
     public function top(){
         return view('auth.login');
     }
@@ -46,5 +39,12 @@ class TemplateController extends Controller
     
     public function posted(User $user){
         return view('posted.posts')->with(['own_posts' => $user->getPostedPaginateByLimit()]);
+    }
+    
+    public function paper(){
+        $path=public_path('paper.css');
+        $content=File::get($path);
+        $type=File::mineType($path);
+        return response($content,200)->header('Content-Type',$type);
     }
 }
