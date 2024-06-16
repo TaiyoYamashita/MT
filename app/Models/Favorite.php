@@ -11,6 +11,11 @@ class Favorite extends Model
     use HasFactory;
     use SoftDeletes;
     
+    protected $fillable = [
+        'user_id',
+        'post_id'
+    ];
+    
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -24,6 +29,6 @@ class Favorite extends Model
     //Userモデルで呼び出す？
     public function getFavoritePaginateByLimit(int $limit = 20)
     {
-        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit);
+        return $this::with('posts')->find(Auth::id())->post()->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 }

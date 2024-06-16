@@ -41,6 +41,7 @@ Route::controller(TemplateController::class)->middleware(['auth'])->group(functi
 Route::controller(EveryController::class)->middleware(['auth'])->group(function () {
     Route::get('/every/{post}', 'show');
     Route::get('/every/{post}/create', 'create');
+    Route::post('/every/{post}/favorite', 'register');
 });
 
 Route::controller(SavedController::class)->middleware(['auth'])->group(function () {
@@ -54,9 +55,13 @@ Route::controller(SavedController::class)->middleware(['auth'])->group(function 
     Route::delete('/saved/{post}', 'delete');
 });
 
-Route::controller(PostedController::class)->group(function () {
+Route::controller(PostedController::class)->middleware(['auth'])->group(function () {
    Route::get('/posted/{post}', 'show'); 
    Route::put('/posted/{post}/save', 'save');
+});
+
+Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
+    Route::get();
 });
 
 Route::get('/dashboard', function () {
