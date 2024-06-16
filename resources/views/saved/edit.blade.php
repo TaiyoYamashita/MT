@@ -1,10 +1,7 @@
-@extends('template')
-
-@section('var')
-    保存した文章の編集
-@endsection
-
-@section('contents')
+<x-app-layout>
+    <x-slot name="header">
+        保存した文章の編集
+    </x-slot>
     <form action="/saved/{{ $post->id }}" method="POST">
         @csrf
         @method("PUT")
@@ -23,4 +20,4 @@
         <input type="submit" value="保存">
         <a href="/saved/{{ $post->id }}">戻る</a>
     </form>
-@endsection
+</x-app-layout>

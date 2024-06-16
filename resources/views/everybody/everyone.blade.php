@@ -1,14 +1,8 @@
-@extends('template')
-
-@section('read css')
+<x-app-layout>
+    <x-slot name="header">
+        みんなの投稿
+    </x-slot>
     <link rel="stylesheet" href="everybody.css">
-@endsection
-
-@section('var')
-    みんなの投稿
-@endsection
-
-@section('contents')
     <?php $cnt=0; ?>
     @foreach ($all_posts as $post)
         <div class='post'>
@@ -23,4 +17,4 @@
             <?php $cnt=0 ?>
         @endif
     @endforeach
-@endsection
+</x-app-layout>

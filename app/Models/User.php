@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
     
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    
     public function getSavedPaginateByLimit(int $limit = 20)
     {
         return $this::with('posts')->find(Auth::id())->posts()->where('private_or_public', 0)->orderBy('updated_at', 'DESC')->paginate($limit);
