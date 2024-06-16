@@ -18,6 +18,10 @@
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="/profile">戻る</a>
+            </div>
         </div>
     </div>
 </x-app-layout>

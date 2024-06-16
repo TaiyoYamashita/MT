@@ -1,0 +1,86 @@
+.background
+{
+    display: flex;
+}
+
+.container
+{
+    width: 800px;
+    margin: 70px auto;
+}
+
+.title
+{
+    font-size: 40px;
+    word-wrap: break-word;
+}
+
+.date
+{
+    margin-bottom: 0;
+    float: right;
+}
+
+.clear
+{
+    clear: left;
+}
+
+.sentences
+{
+    background-color: white;
+    height: 1000px;
+    width: 800px;
+    margin: 30px 0;
+    word-wrap: break-word;
+}
+
+.memorandum
+{
+    padding-bottom: 30px;
+}
+
+.button
+{
+    color: gray;
+    height: 50px;
+    width: 22.5%;
+    float: left;
+    margin: 10px;
+}
+
+.post
+{
+    background-color: red;
+}
+
+.edit
+{
+    display: flex;
+    background-color: blue;
+}
+
+.delete
+{
+    background-color: green;
+}
+
+.back
+{
+    display: flex;
+    background-color: yellow;
+}
+
+.edit-button
+{
+    height: 24px;
+    width: 57.22px;
+    margin: auto;
+}
+
+.back-button
+{
+    height: 24px;
+    width: 28.2px;
+    margin: auto;
+}

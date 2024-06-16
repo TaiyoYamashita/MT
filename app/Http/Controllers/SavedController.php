@@ -28,6 +28,13 @@ class SavedController extends Controller
         return view('saved.show')->with(['post' => $post]);
     }
     
+    public function save(){
+        $path=public_path('save.css');
+        $content=File::get($path);
+        $type=File::mineType($path);
+        return response($content,200)->header('Content-Type',$type);
+    }
+    
     public function edit(Post $post)
     {
         return view('saved.edit')->with(['post' => $post]);
