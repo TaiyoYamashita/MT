@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->int('user_id')->constrained('users');
-            $table->int('post_id')->constrained('posts');
+            $table->integer('user_id')->constrained('users');
+            $table->integer('post_id')->constrained('posts');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable()->default(null);
         });
     }
 

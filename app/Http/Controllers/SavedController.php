@@ -14,7 +14,7 @@ class SavedController extends Controller
         return view('saved.create');
     }
     
-    public function store(Request $request, Post $post)
+    public function store(Request $request, Post $post) // request編集必要
     {
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];

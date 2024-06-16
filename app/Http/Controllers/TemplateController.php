@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post; //モデルも使用宣言をする
+use App\Models\Favorite;
 
 class TemplateController extends Controller
 {
@@ -34,7 +35,7 @@ class TemplateController extends Controller
     }
     
     public function favorite(){
-        return view('favorite.favorites');
+        return view('favorite.favorites')->with(['favorites' => $favorite->getFavoritePaginateByLimit]);
     }
     
     public function posted(User $user){
