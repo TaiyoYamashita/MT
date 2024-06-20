@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Favorite;
 
 class EveryController extends Controller
 {
@@ -16,5 +17,14 @@ class EveryController extends Controller
     {
         $post = Post::findOrFail($id);
         return view('everybody.create')->with(['post' => $post]);
+    }
+    
+    public function register(Request $request, Post $post, Favorite $favorite)
+    {
+        $input = ['user_id' => $request->user()->id];
+        $input += ['post_id' => $post->id];
+        $input += ['saved_at' => now()];
+        $favorite->fill($input)->save();
+        return redirect('/every/' . $post->id);
     }
 }

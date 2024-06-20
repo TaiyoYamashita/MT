@@ -34,8 +34,8 @@ class TemplateController extends Controller
         return view('saved.saves')->with(['own_posts' => $user->getSavedPaginateByLimit()]);
     }
     
-    public function favorite(){
-        return view('favorite.favorites')->with(['favorites' => $favorite->getFavoritePaginateByLimit]);
+    public function favorite(Favorite $favorite){
+        return view('favorite.favorites')->with(['favorites' => $favorite->getFavoritePaginateByLimit()]);
     }
     
     public function posted(User $user){

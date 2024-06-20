@@ -9,11 +9,15 @@ use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
-    public function register(Request $request, Post $post, Favorite $favorite)
+    
+    public function show(Favorite $favorite)
     {
-        $input = ['user_id' => $request->user()->id];
-        $input += ['post_id' => $post->id]; // このままだと投稿IDを入手できない
-        $favorite->fill($input)->save();
-        return redirect('/every/' . $post->id . '/show');
+        return view('favorite.show')->with(['post' => $favorite]);
+    }
+    
+    public function delete(Favorite $favorite)
+    {
+        $favorite->delete();
+        return redirect('/favorite');
     }
 }
