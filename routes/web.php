@@ -6,6 +6,7 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\EveryController;
 use App\Http\Controllers\SavedController;
 use App\Http\Controllers\PostedController;
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,7 +62,8 @@ Route::controller(PostedController::class)->middleware(['auth'])->group(function
 });
 
 Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
-    Route::get();
+    Route::get('/favorite/{favorite}', 'show');
+    Route::delete('/favorite/{favorite}', 'delete');
 });
 
 Route::get('/dashboard', function () {

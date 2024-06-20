@@ -44,5 +44,5 @@
             </x-primary-button>
         </div>
     </form>
-    <a href="/resister">新規登録の方はこちら</a>
+    <a href="/register">新規登録の方はこちら</a>
 </x-guest-layout>
