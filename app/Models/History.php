@@ -11,8 +11,7 @@ class History extends Model
     
     protected $fillable = [
         'user_id',
-        'post_id',
-        'used_at'
+        'post_id'
     ];
     
     public function user()

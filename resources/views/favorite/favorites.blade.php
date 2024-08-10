@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        お気に入り
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">お気に入り</h2>
     </x-slot>
     <link rel="stylesheet" href="everybody.css">
     <div class="container">

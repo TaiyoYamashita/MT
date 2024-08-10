@@ -1,7 +1,7 @@
 <x-app-layout>
     <link rel="stylesheet" href="/save.css">
     <x-slot name="header">
-        保存した文章
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">保存した文章</h2>
     </x-slot>
     <div class="background">
         <div class="container">

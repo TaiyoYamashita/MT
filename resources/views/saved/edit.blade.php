@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        保存した文章の編集
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">保存した文章の編集</h2>
     </x-slot>
     <form action="/saved/{{ $post->id }}" method="POST">
         @csrf

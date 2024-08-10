@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        保存した文章
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">保存した文章</h2>
         <a href="#" style="float:right; padding-right:20px;">sort</a>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">

@@ -13,4 +13,11 @@ class HistoryController extends Controller
     {
         return view('history.show')->with(['post' => $history]);
     }
+    
+    public function store(Request $request, History $history)
+    {
+        $input = ['user_id' => $request->user()->id];
+        $input += ['post_id' => $post->id];
+        $history->fill($input)->save();
+    }
 }
