@@ -43,6 +43,7 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
     Route::get('/every/{post}', 'show');
     Route::get('/every/{post}/create', 'create');
     Route::post('/every/{post}/favorite', 'register');
+    Route::post('/every/{post}/saved', 'duplicate');
 });
 
 Route::controller(SavedController::class)->middleware(['auth'])->group(function () {

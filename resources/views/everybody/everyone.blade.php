@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        みんなの投稿
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">みんなの投稿</h2>
     </x-slot>
     <link rel="stylesheet" href="everybody.css">
     <div class="container">

@@ -30,6 +30,11 @@ class Post extends Model
         return $this->hasMany(Favorite::class);
     }
     
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
+    
     function getPublicPaginateByLimit(int $limit=1)
     {
         return $this::with('user')->where('private_or_public', 1)->orderBy('updated_at', 'DESC')->paginate($limit);

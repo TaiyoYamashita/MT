@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        お気に入り
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">お気に入り</h2>
     </x-slot>
     <h5 name="post[title]">{{ $post->post->title }}</h5>
     <small>登録日時：{{ $post->saveed_at }}</small>

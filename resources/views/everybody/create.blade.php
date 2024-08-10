@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        新規文章の作成
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">新規文章の作成</h2>
     </x-slot>
-    <form action="/saved" method="POST">
+    <form action="/every/{{ $post->id }}/saved" method="POST">
         @csrf
         <div class="title">
             <p>タイトル</p>

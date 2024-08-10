@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        投稿した文章
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">投稿した文章</h2>
     </x-slot>
     <h5>{{ $post->title }}</h5>
     <small>投稿日時：{{ $post->posted_at }}</small>

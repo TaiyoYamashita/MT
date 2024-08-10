@@ -29,9 +29,9 @@ class SavedController extends Controller
     }
     
     public function save(){
-        $path=public_path('save.css');
-        $content=File::get($path);
-        $type=File::mineType($path);
+        $path = public_path('save.css');
+        $content = File::get($path);
+        $type = File::mineType($path);
         return response($content,200)->header('Content-Type',$type);
     }
     
