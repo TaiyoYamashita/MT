@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post; //モデルも使用宣言をする
 use App\Models\Favorite;
+use App\Models\History;
 
 class TemplateController extends Controller
 {
@@ -26,8 +27,8 @@ class TemplateController extends Controller
         return view('genre.genres');
     }
     
-    public function history(){
-        return view('history.histories');
+    public function history(History $history){
+        return view('history.histories')->with(['histories' => $history->getHistoryPaginateByLimit()]);
     }
     
     public function saved(User $user){

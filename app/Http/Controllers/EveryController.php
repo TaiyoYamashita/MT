@@ -25,10 +25,10 @@ class EveryController extends Controller
         $input = ['user_id' => $request->user()->id];
         $input += ['post_id' => $post->id];
         $history->fill($input)->save();
-        $newPost = new Post();
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         $input += ['private_or_public' => 0];
+        $newPost = new Post();
         $newPost->fill($input)->save();
         return redirect('/saved/' . $newPost->id);
     }

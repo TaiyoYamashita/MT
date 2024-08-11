@@ -11,7 +11,7 @@
         @method('DELETE')
         <button type="submit">お気に入りから外す</button>
     </form>
-    <form action="/fovorite/copy">
+    <!--<form action="/fovorite/copy">-->
         <a href="/favorite/{{ $post->id }}/create">この投稿を基に文章を作成する</a>
-    </form>
+    <!--</form>-->
 </x-app-layout>
