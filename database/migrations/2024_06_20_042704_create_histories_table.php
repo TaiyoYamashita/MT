@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('post_id')->constrained('posts');
-            $table->timestamps();
+            $table->timestamp('used_at')->useCurrent();
         });
     }
 

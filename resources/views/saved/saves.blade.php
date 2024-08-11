@@ -10,6 +10,7 @@
                 <div class="element">
                     <h5>{{ $post->title }}</h5>
                     <p>{{ $post->sentences }}</p>
+                    <small>{{ $post->updated_at }}</small>
                 </div>
             </a>
         @endforeach
