@@ -20,4 +20,20 @@ class FavoriteController extends Controller
         $favorite->delete();
         return redirect('/favorite');
     }
+    
+    public function create(Favorite $favorite)
+    {
+        $post = $favorite->post;
+        return view('favorite.create')->with(['post' => $post, 'favorite' => $favorite]);
+    }
+        
+    public function store(Request $request) // request編集必要
+    {
+        $input = $request['post'];
+        $input += ['user_id' => $request->user()->id];
+        $input += ['private_or_public' => 0];
+        $post = new Post();
+        $post->fill($input)->save();
+        return redirect('/saved/' . $post->id);
+    }
 }

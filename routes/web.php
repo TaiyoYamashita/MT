@@ -64,6 +64,8 @@ Route::controller(PostedController::class)->middleware(['auth'])->group(function
 
 Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
     Route::get('/favorite/{favorite}', 'show');
+    Route::get('/favorite/{favorite}/create', 'create');
+    Route::post('/favorite/{favorite}/saved', 'store');
     Route::delete('/favorite/{favorite}', 'delete');
 });
 
