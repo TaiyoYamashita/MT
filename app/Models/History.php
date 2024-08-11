@@ -17,8 +17,11 @@ class History extends Model
     
     protected $fillable = [
         'user_id',
-        'post_id'
+        'post_id',
+        'used_at'
     ];
+    
+    public $timestamps = false;
     
     public function user()
     {
@@ -34,6 +37,6 @@ class History extends Model
     public function getHistoryPaginateByLimit(int $limit = 20)
     {
         //return $this::with('posts')->find(Auth::id())->post()->orderBy('updated_at', 'DESC')->paginate($limit);
-        return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('updated_at', 'DESC')->paginate($limit);
+        return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('used_at', 'DESC')->paginate($limit);
     }
 }

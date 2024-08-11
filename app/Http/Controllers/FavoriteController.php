@@ -31,7 +31,6 @@ class FavoriteController extends Controller
     {
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
-        $input += ['private_or_public' => 0];
         $post = new Post();
         $post->fill($input)->save();
         return redirect('/saved/' . $post->id);

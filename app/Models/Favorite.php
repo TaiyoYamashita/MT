@@ -21,6 +21,8 @@ class Favorite extends Model
         'saved_at'
     ];
     
+    public $timestamps = false;
+    
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -35,6 +37,6 @@ class Favorite extends Model
     public function getFavoritePaginateByLimit(int $limit = 20)
     {
         //return $this::with('posts')->find(Auth::id())->post()->orderBy('updated_at', 'DESC')->paginate($limit);
-        return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('updated_at', 'DESC')->paginate($limit);
+        return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('saved_at', 'DESC')->paginate($limit);
     }
 }

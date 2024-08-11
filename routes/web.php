@@ -1,12 +1,13 @@
 <?php
 URL::forceScheme('https');
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\EveryController;
-use App\Http\Controllers\SavedController;
-use App\Http\Controllers\PostedController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PostedController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SavedController;
+use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,25 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
     Route::post('/every/{post}/saved', 'duplicate');
 });
 
+Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
+    Route::get('/favorite/{favorite}', 'show');
+    Route::get('/favorite/{favorite}/create', 'create');
+    Route::post('/favorite/{favorite}/saved', 'store');
+    Route::delete('/favorite/{favorite}', 'delete');
+});
+
+Route::controller(HistoryController::class)->middleware(['auth'])->group(function () {
+    Route::get('/history/{history}', 'show');
+    Route::get('/history/{history}/create', 'create');
+    Route::post('history/{history}/saved', 'store');
+    Route::delete('/history/{history}', 'delete');
+});
+
+Route::controller(PostedController::class)->middleware(['auth'])->group(function () {
+   Route::get('/posted/{post}', 'show'); 
+   Route::put('/posted/{post}/save', 'save');
+});
+
 Route::controller(SavedController::class)->middleware(['auth'])->group(function () {
     Route::get('/saved/create', 'create');
     Route::get('/saved/{post}', 'show');
@@ -55,18 +75,6 @@ Route::controller(SavedController::class)->middleware(['auth'])->group(function 
     Route::put('/saved/{post}', 'update');          //保存した文章の編集
     Route::put('/saved/{post}/post', 'post');       //保存した文章の投稿
     Route::delete('/saved/{post}', 'delete');
-});
-
-Route::controller(PostedController::class)->middleware(['auth'])->group(function () {
-   Route::get('/posted/{post}', 'show'); 
-   Route::put('/posted/{post}/save', 'save');
-});
-
-Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
-    Route::get('/favorite/{favorite}', 'show');
-    Route::get('/favorite/{favorite}/create', 'create');
-    Route::post('/favorite/{favorite}/saved', 'store');
-    Route::delete('/favorite/{favorite}', 'delete');
 });
 
 Route::get('/dashboard', function () {

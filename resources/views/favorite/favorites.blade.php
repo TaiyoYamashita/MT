@@ -14,7 +14,7 @@
                         <h2>{{ $favorite->post->title }}</h2>
                         <p>{{ $favorite->post->sentences }}</p>
                         <small>{{ $favorite->post->user->name }}</small>
-                        <small>{{ $favorite->post->posted_at }}</small>
+                        <small>{{ $favorite->saved_at }}</small>
                     </div>
                 </a>
                 <?php ++$cnt ?>

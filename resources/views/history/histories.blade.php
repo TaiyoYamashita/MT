@@ -14,7 +14,7 @@
                         <h2>{{ $history->post->title }}</h2>
                         <p>{{ $history->post->sentences }}</p>
                         <small>{{ $history->post->user->name }}</small>
-                        <small>{{ $history->post->posted_at }}</small>
+                        <small>{{ $history->used_at }}</small>
                     </div>
                 </a>
                 <?php ++$cnt ?>

@@ -27,7 +27,6 @@ class EveryController extends Controller
         $history->fill($input)->save();
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
-        $input += ['private_or_public' => 0];
         $newPost = new Post();
         $newPost->fill($input)->save();
         return redirect('/saved/' . $newPost->id);
@@ -37,7 +36,7 @@ class EveryController extends Controller
     {
         $input = ['user_id' => $request->user()->id];
         $input += ['post_id' => $post->id];
-        $input += ['saved_at' => now()];
+        //$input += ['saved_at' => now()];
         $favorite->fill($input)->save();
         return redirect('/every/' . $post->id);
     }

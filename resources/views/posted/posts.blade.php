@@ -5,6 +5,7 @@
     @foreach($own_posts as $post)
         <a href="/posted/{{ $post->id }}"><h4>{{ $post->title }}</h4></a>
         <p>{{ $post->sentences }}</p>
+        <small>{{ $post->posted_at }}</small>
     @endforeach
     <div class="paginate">
         {{ $own_posts->links() }}
