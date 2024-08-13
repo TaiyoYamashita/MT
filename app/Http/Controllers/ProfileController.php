@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Favorite;
 
 class ProfileController extends Controller
 {
     public function detail(User $user)
     {
-        return view('profile.detail')->with(['user' => $user]);
+        return view('profile.detail')->with(['user' => $user, 'favorites' => $user->favorites]);
     }
     
     /**

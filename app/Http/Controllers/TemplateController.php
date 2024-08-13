@@ -31,19 +31,17 @@ class TemplateController extends Controller
         return view('history.histories')->with(['histories' => $history->getHistoryPaginateByLimit()]);
     }
     
-    public function saved(User $user){
-        return view('saved.saves')->with(['own_posts' => $user->getSavedPaginateByLimit()]);
+    public function saved(Post $post){
+        return view('saved.saves')->with(['own_posts' => $post->getSavedPaginateByLimit()]);
     }
     
     public function favorite(Favorite $favorite)
     {
-        $kari = $favorite->getFavoritePaginateByLimit();
-        //dd($kari);
         return view('favorite.favorites')->with(['favorites' => $favorite->getFavoritePaginateByLimit()]);
     }
     
-    public function posted(User $user){
-        return view('posted.posts')->with(['own_posts' => $user->getPostedPaginateByLimit()]);
+    public function posted(Post $post){
+        return view('posted.posts')->with(['own_posts' => $post->getPostedPaginateByLimit()]);
     }
     
     public function paper(){

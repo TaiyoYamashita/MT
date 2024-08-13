@@ -17,6 +17,7 @@ class HistoryController extends Controller
     {
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
+        $input += ['reference' => $history->post_id];
         $post = new Post();
         $post->fill($input)->save();
         $input = ['used_at' => now()];
