@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -17,6 +18,7 @@ class Post extends Model
         'sentences',
         'memorandum',
         'private_or_public',
+        'reference',
         'posted_at'
     ];
     
@@ -35,8 +37,28 @@ class Post extends Model
         return $this->hasMany(History::class);
     }
     
-    function getPublicPaginateByLimit(int $limit=1)
+    public function getPublicPaginateByLimit(int $limit=1)
     {
-        return $this::with('user')->where('private_or_public', 1)->orderBy('updated_at', 'DESC')->paginate($limit);
+        return $this::with('user')->where('private_or_public', 2)->orderBy('updated_at', 'DESC')->paginate($limit);
+    }
+    
+    public function references()
+    {
+        return $this->hasMany(Post::class, 'reference');
+    }
+    
+    public function findFavorite()
+    {
+        return Favorite::where('user_id', Auth::id())->where('post_id', $this->id)->exists();
+    }
+    
+    public function getSavedPaginateByLimit(int $limit = 1)
+    {
+        return $this::with('user')->where('user_id', Auth::id())->where('private_or_public', 1)->orderBy('updated_at', 'DESC')->paginate($limit);
+    }
+    
+    public function getPostedPaginateByLimit(int $limit = 1)
+    {
+        return $this::with('user')->where('user_id', Auth::id())->whereIn('private_or_public', [2,3])->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 }

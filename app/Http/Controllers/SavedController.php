@@ -18,6 +18,7 @@ class SavedController extends Controller
     {
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
+        $input += ['reference' => null];
         $post->fill($input)->save();
         return redirect('/saved/' . $post->id);
     }
@@ -41,17 +42,24 @@ class SavedController extends Controller
     
     public function update(Request $request, Post $post)
     {
-        $input_post = $request['post'];
-        $post->fill($input_post)->save();
+        $input = $request['post'];
+        $post->fill($input)->save();
         return redirect('/saved/' . $post->id);
     }
     
-    public function post($id)
+    public function post(Post $post)
     {
-        $post = Post::findOrFail($id);
-        $post->private_or_public = 1;
+        $post = Post::findOrFail($post->id);
+        $post->private_or_public = 2;
         $post->posted_at = now();
         $post->save();
+        return redirect('/posted/' . $post->id);
+    }
+    
+    public function example(Post $post)
+    {
+        $input = ['private_or_public' => 3];
+        $post->fill($input)->save();
         return redirect('/posted/' . $post->id);
     }
     

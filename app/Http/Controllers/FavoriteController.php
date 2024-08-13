@@ -27,10 +27,11 @@ class FavoriteController extends Controller
         return view('favorite.create')->with(['post' => $post, 'favorite' => $favorite]);
     }
         
-    public function store(Request $request) // request編集必要
+    public function store(Request $request, Post $post) // request編集必要
     {
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
+        $input += ['reference' => $post->id];
         $post = new Post();
         $post->fill($input)->save();
         return redirect('/saved/' . $post->id);
