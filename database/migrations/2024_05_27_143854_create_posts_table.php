@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('sentences');
             $table->text('memorandum')->nullable();
-            $table->integer('private_or_public')->default(0);
-            $table->integer('reference')->nullable();
+            $table->integer('private_or_public')->default(1);
+            $table->foreignId('reference')->nullable()->constrained('posts')->default(null);
             $table->timestamps();
             $table->timestamp('posted_at')->nullable();
             $table->timestamp('deleted_at')->nullable();

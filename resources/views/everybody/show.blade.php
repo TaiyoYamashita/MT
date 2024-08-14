@@ -6,9 +6,33 @@
     <small>投稿日時：{{ $post->posted_at }}</small>
     <p name="post[sentences]">{{ $post->sentences }}</p>
     <a href="/everybody">戻る</a>
-    <form action="/every/{{ $post->id }}/favorite" method="POST">
-        @csrf
-        <button type="submit">お気に入りに登録する</button>
-    </form>
+    @if ($bool)
+        <form action="/every/{{ $post->id }}/delete" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">お気に入りから外す</button>
+        </form>
+    @else
+        <form action="/every/{{ $post->id }}/favorite" method="POST">
+            @csrf
+            <button type="submit">お気に入りに登録する</button>
+        </form>
+    @endif
     <a href="/every/{{ $post->id }}/create">この投稿を基に文章を作成する</a>
+    <?php $cnt=0; ?>
+    @foreach ($references as $reference)
+        <a href="/every/{{ $post->id }}/{{ $reference->id }}">
+            <div class='post'>
+                <h2>{{ $reference->title }}</h2>
+                <p>{{ $reference->sentences }}</p>
+                <small>{{ $reference->user->name }}</small>
+                <small>{{ $reference->posted_at }}</small>
+            </div>
+        </a>
+        <?php ++$cnt ?>
+        @if ($cnt==4)
+            <div class="clear"></div>
+            <?php $cnt=0 ?>
+        @endif
+    @endforeach
 </x-app-layout>

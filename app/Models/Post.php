@@ -78,5 +78,6 @@ class Post extends Model
     public function getPostedPaginateByLimit(int $limit = 1)
     {
         return $this::with('user')->where('user_id', Auth::id())->whereIn('private_or_public', [2,3])->orderBy('posted_at', 'DESC')->paginate($limit);
+
     }
 }

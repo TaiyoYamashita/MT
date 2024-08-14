@@ -46,6 +46,7 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
     Route::get('/every/{post}/create', 'create');
     Route::post('/every/{post}/favorite', 'register');
     Route::post('/every/{post}/saved', 'duplicate');
+    Route::delete('/every/{post}/delete', 'delete');
 });
 
 Route::controller(SearchController::class)->middleware(['auth'])->group(function () {
@@ -55,7 +56,7 @@ Route::controller(SearchController::class)->middleware(['auth'])->group(function
 Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
     Route::get('/favorite/{favorite}', 'show');
     Route::get('/favorite/{favorite}/create', 'create');
-    Route::post('/favorite/{favorite}/saved', 'store');
+    Route::post('/favorite/{post}/saved', 'store');
     Route::delete('/favorite/{favorite}', 'delete');
 });
 
@@ -79,6 +80,7 @@ Route::controller(SavedController::class)->middleware(['auth'])->group(function 
     Route::post('/saved', 'store');                 //新規文章の保存
     Route::put('/saved/{post}', 'update');          //保存した文章の編集
     Route::put('/saved/{post}/post', 'post');       //保存した文章の投稿
+    Route::put('/saved/{post}/example', 'example'); //作成例としての投稿
     Route::delete('/saved/{post}', 'delete');
 });
 

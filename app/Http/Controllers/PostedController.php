@@ -13,9 +13,8 @@ class PostedController extends Controller
         return view('posted.show')->with(['post' => $post]);
     }
     
-    public function save($id)
+    public function save(Post $post)
     {
-        
         $post = Post::findOrFail($id);
         $post->private_or_public = 1;
         $post->save();
