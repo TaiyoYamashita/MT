@@ -28,7 +28,7 @@
                 </a>
                 <form action="/saved/{{ $post->id }}" id="form_{{ $post->id }}" method="POST">
                     @csrf
-                    @method("DELETE")
+                    @method("PUT")
                     <button class="button delete" type="button" onclick="deletePost({{ $post->id }})">削除する</button>
                 </form>
                 <a href="/saved">
@@ -36,7 +36,7 @@
                         <p class="back-button">戻る</p>
                     </div>
                 </a>
-                @if($post->reference !== null)
+                @if($post->reference !== null && $post->references && $post->references->private_or_public > 1)
                     <form action="/saved/{{ $post->id }}/example" method="POST">
                         @csrf
                         @method('PUT')

@@ -21,9 +21,8 @@ class EveryController extends Controller
         return view('everybody.show')->with(['post' => $post, 'references' => $post->references, 'bool' => $bool]);
     }
     
-    public function create($id)
+    public function create(Post $post)
     {
-        $post = Post::findOrFail($id);
         return view('everybody.create')->with(['post' => $post]);
     }
     

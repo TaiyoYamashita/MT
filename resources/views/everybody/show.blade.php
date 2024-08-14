@@ -19,20 +19,22 @@
         </form>
     @endif
     <a href="/every/{{ $post->id }}/create">この投稿を基に文章を作成する</a>
-    <?php $cnt=0; ?>
-    @foreach ($references as $reference)
-        <a href="/every/{{ $post->id }}/{{ $reference->id }}">
-            <div class='post'>
-                <h2>{{ $reference->title }}</h2>
-                <p>{{ $reference->sentences }}</p>
-                <small>{{ $reference->user->name }}</small>
-                <small>{{ $reference->posted_at }}</small>
-            </div>
-        </a>
-        <?php ++$cnt ?>
-        @if ($cnt==4)
-            <div class="clear"></div>
-            <?php $cnt=0 ?>
-        @endif
-    @endforeach
+    @if ($references !== null)
+        <?php $cnt=0; ?>
+        @foreach ($references as $reference)
+            <a href="/every/{{ $post->id }}/{{ $reference->id }}">
+                <div class='post'>
+                    <h2>{{ $reference->title }}</h2>
+                    <p>{{ $reference->sentences }}</p>
+                    <small>{{ $reference->user->name }}</small>
+                    <small>{{ $reference->posted_at }}</small>
+                </div>
+            </a>
+            <?php ++$cnt ?>
+            @if ($cnt==4)
+                <div class="clear"></div>
+                <?php $cnt=0 ?>
+            @endif
+        @endforeach
+    @endif
 </x-app-layout>

@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     
     protected $fillable = [
         'user_id',
@@ -49,7 +47,7 @@ class Post extends Model
     
     public function references()
     {
-        return $this->hasMany(Post::class, 'reference');
+        return $this->belongsTo(Post::class, 'reference');
     }
     
     public function search($tags, $keyword, int $limit = 1)
