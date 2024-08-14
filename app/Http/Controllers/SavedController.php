@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 //use App\Https\Requests\PostController;
 
 class SavedController extends Controller
 {
     public function create()
     {
-        return view('saved.create');
+        $tags = new Tag();
+        return view('saved.create')->with(['tags' => $tags->display()]);
     }
     
     public function store(Request $request, Post $post) // request編集必要
@@ -20,6 +22,14 @@ class SavedController extends Controller
         $input += ['user_id' => $request->user()->id];
         $input += ['reference' => null];
         $post->fill($input)->save();
+        $tags = new Tag();
+        if ($request['checkbox'] !== null)
+        {
+            foreach ($request['checkbox'] as $id => $tag)
+            {
+                $tags->insertIntoPostsTags($post, $id);
+            }
+        }
         return redirect('/saved/' . $post->id);
     }
     
@@ -37,13 +47,23 @@ class SavedController extends Controller
     
     public function edit(Post $post)
     {
-        return view('saved.edit')->with(['post' => $post]);
+        $tags = new Tag();
+        return view('saved.edit')->with(['post' => $post, 'tags' => $tags->display()]);
     }
     
     public function update(Request $request, Post $post)
     {
         $input = $request['post'];
         $post->fill($input)->save();
+        $tags = new Tag();
+        $tags->deleteFromPostsTags($post);
+        if ($request['checkbox'] !== null)
+        {
+            foreach ($request['checkbox'] as $id => $tag)
+            {
+                $tags->insertIntoPostsTags($post, $id);
+            }
+        }
         return redirect('/saved/' . $post->id);
     }
     

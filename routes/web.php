@@ -7,6 +7,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PostedController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SavedController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::get('/register', [TemplateController::class, 'register']);
 
 Route::controller(TemplateController::class)->middleware(['auth'])->group(function () {
     Route::get('/everybody', 'everybody')->name('everybody');
-    Route::get('/genre', 'genre')->name('genre');
+    Route::get('/search', 'search')->name('search');
     Route::get('/history', 'history')->name('history');
     Route::get('/favorite', 'favorite')->name('favorite');
     Route::get('/saved', 'saved')->name('saved');
@@ -46,6 +47,10 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
     Route::post('/every/{post}/favorite', 'register');
     Route::post('/every/{post}/saved', 'duplicate');
     Route::delete('/every/{post}/delete', 'delete');
+});
+
+Route::controller(SearchController::class)->middleware(['auth'])->group(function () {
+   Route::post('/search', 'search'); 
 });
 
 Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {

@@ -17,6 +17,10 @@
             <p>メモ</p>
             <textarea name="post[memorandum]">{{ $post->memorandum }}</textarea>
         </div>
+        @foreach ($tags as $tag)
+            <input name="checkbox[{{ $tag->id }}]" type="checkbox" value="{{ $tag->tag }}">
+            <p>{{ $tag->tag }}</p>
+        @endforeach
         <input type="submit" value="保存">
         <a href="/saved/{{ $post->id }}">戻る</a>
     </form>

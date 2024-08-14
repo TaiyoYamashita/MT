@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Post; //モデルも使用宣言をする
+use App\Models\Post;
 use App\Models\Favorite;
 use App\Models\History;
+use App\Models\Tag;
 
 class TemplateController extends Controller
 {
@@ -23,8 +24,8 @@ class TemplateController extends Controller
         return view('everybody.everyone')->with(['all_posts' => $post->getPublicPaginateByLimit()]);
     }
     
-    public function genre(){
-        return view('genre.genres');
+    public function search(Tag $tags){
+        return view('search.tags')->with(['tags' => $tags->display()]);
     }
     
     public function history(History $history){

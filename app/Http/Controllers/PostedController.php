@@ -15,8 +15,9 @@ class PostedController extends Controller
     
     public function save(Post $post)
     {
-        $input = ['private_or_public' => 1];
-        $post->fill($input)->save();
+        $post = Post::findOrFail($id);
+        $post->private_or_public = 1;
+        $post->save();
         return redirect('/saved/' . $post->id);
     }
 }

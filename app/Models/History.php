@@ -32,10 +32,8 @@ class History extends Model
         return $this->belongsTo(Post::class);
     }
     
-    //Userモデルで呼び出す？
     public function getHistoryPaginateByLimit(int $limit = 20)
     {
-        //return $this::with('posts')->find(Auth::id())->post()->orderBy('updated_at', 'DESC')->paginate($limit);
         return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('used_at', 'DESC')->paginate($limit);
     }
 }
