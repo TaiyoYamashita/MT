@@ -15,8 +15,8 @@
                     <x-nav-link :href="route('everybody')" :active="request()->routeIs('everybody')">
                         {{ __('みんなの投稿') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('genre')" :active="request()->routeIs('genre')">
-                        {{ __('ジャンルから探す') }}
+                    <x-nav-link :href="route('search')" :active="request()->routeIs('search')">
+                        {{ __('検索') }}
                     </x-nav-link>
                     <x-nav-link :href="route('saved')" :active="request()->routeIs('saved')">
                         {{ __('保存した文章') }}
