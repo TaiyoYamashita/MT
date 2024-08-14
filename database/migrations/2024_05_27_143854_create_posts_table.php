@@ -23,7 +23,6 @@ return new class extends Migration
             $table->foreignId('reference')->nullable()->constrained('posts')->default(null);
             $table->timestamps();
             $table->timestamp('posted_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
         });
     }
 

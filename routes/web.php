@@ -81,7 +81,7 @@ Route::controller(SavedController::class)->middleware(['auth'])->group(function 
     Route::put('/saved/{post}', 'update');          //保存した文章の編集
     Route::put('/saved/{post}/post', 'post');       //保存した文章の投稿
     Route::put('/saved/{post}/example', 'example'); //作成例としての投稿
-    Route::delete('/saved/{post}', 'delete');
+    Route::put('/saved/{post}', 'deletion');
 });
 
 Route::get('/dashboard', function () {

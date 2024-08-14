@@ -83,9 +83,10 @@ class SavedController extends Controller
         return redirect('/posted/' . $post->id);
     }
     
-    public function delete(Post $post)
+    public function deletion(Post $post)
     {
-        $post->delete();
+        $input = ['private_or_public' => 0];
+        $post->fill($input)->save();
         return redirect('/saved');
     }
 }
