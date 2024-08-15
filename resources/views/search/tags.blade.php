@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">検索</h2>
     </x-slot>
-    <form action="/search" method="Post">
+    <form action="/search" method="POST">
         @csrf
         @foreach ($tags as $tag)
             <input name="checkbox[{{ $tag->id }}]" type="checkbox" value="{{ $tag->tag }}">

@@ -44,13 +44,18 @@ Route::controller(TemplateController::class)->middleware(['auth'])->group(functi
 Route::controller(EveryController::class)->middleware(['auth'])->group(function () {
     Route::get('/every/{post}', 'show');
     Route::get('/every/{post}/create', 'create');
-    Route::post('/every/{post}/favorite', 'register');
-    Route::post('/every/{post}/saved', 'duplicate');
+    Route::post('/every/{post}/favorite', 'favorite');
+    Route::post('/every/{post}/saved', 'save');
     Route::delete('/every/{post}/delete', 'delete');
 });
 
 Route::controller(SearchController::class)->middleware(['auth'])->group(function () {
-   Route::post('/search', 'search'); 
+    Route::get('/search/{post}', 'show');
+    Route::get('/search2', 'search2');
+    Route::post('/search', 'search');
+    Route::post('/search/{post}/favorite', 'favorite');
+    Route::post('/search/{post}/saved', 'save');
+    Route::delete('/search/{post}/delete', 'delete');
 });
 
 Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {

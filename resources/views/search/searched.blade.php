@@ -1,16 +1,29 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">検索</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="float:left">検索　　</h2>
+        @if ($tags !== null)
+            <p style="float:left;">選択タグ：</p>
+            @foreach ($tags as $tag)
+                <p style="float:left;">{{ $tag }}　</p>
+            @endforeach
+        @endif
+        @if ($keyword !== null)
+            <p>検索ワード：{{ $keyword }}</p>
+        @endif
+        <div style="clear:left;"></div>
     </x-slot>
     <link rel="stylesheet" href="everybody.css">
     <div class="container">
-        @if($results === null)
+        @if (count($results) === 0)
             <p>条件に合致する文章が見つかりませんでした</p>
-            <a href="/search">条件を変更する</a>
         @else
             <?php $cnt=0; ?>
             @foreach ($results as $result)
-                <a href="/search/{{ $result->id }}/show">
+                @if ($tags !== null)
+                    <a href="/search/{{ $result->id }}?tags={{ urlencode(implode(',', $tags)) }}&keyword={{ urlencode($keyword) }}">
+                @else
+                    <a href="/search/{{ $result->id }}?keyword={{ urlencode($keyword) }}">
+                @endif
                     <div class='post'>
                         <h2>{{ \Illuminate\Support\Str::limit($result->sentences, 40) }}</h2>
                         <p>{{ \Illuminate\Support\Str::limit($result->sentences, 60) }}</p>
@@ -29,5 +42,6 @@
                {{ $results->links() }}
             </div>
         @endif
+        <a href="/search">条件を変更する</a>
     </div>
 </x-app-layout>

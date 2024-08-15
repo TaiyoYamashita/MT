@@ -30,11 +30,6 @@ class Post extends Model
         return $this->hasMany(Favorite::class);
     }
     
-    public function tags()
-    {
-        return $this->hasMany(Tag::class);
-    }
-    
     public function histories()
     {
         return $this->hasMany(History::class);
@@ -48,19 +43,6 @@ class Post extends Model
     public function references()
     {
         return $this->belongsTo(Post::class, 'reference');
-    }
-    
-    public function search($tags, $keyword, int $limit = 1)
-    {
-        $result = [];
-        foreach($tags as $tag){
-            $result += $this::with('posts_tags')->where('private_or_public', 2)->where('tags', $tag);
-        }
-        if ($keyword !== null)
-        {
-            
-        }
-        return $result->groupBy('posts.id')->orderBy('posted_at', 'DESC')->paginate($limit);
     }
     
     public function findFavorite()

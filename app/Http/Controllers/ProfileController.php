@@ -13,9 +13,9 @@ use App\Models\Favorite;
 
 class ProfileController extends Controller
 {
-    public function detail(User $user)
+    public function detail(Request $request, User $user)
     {
-        return view('profile.detail')->with(['user' => $user, 'favorites' => $user->favorites]);
+        return view('profile.detail')->with(['user' => $request->user(), 'user_info' => $user]);
     }
     
     /**
@@ -48,7 +48,8 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.detail');
+        //return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
