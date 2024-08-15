@@ -8,11 +8,11 @@
         @foreach($own_posts as $post)
             <a href="/saved/{{ $post->id }}">
                 <div class="element">
-                    <h5>{{ $post->title }}</h5>
-                    <p>{{ $post->sentences }}</p>
-                    <small>{{ $post->updated_at }}</small>
+                    <h5>{{ \Illuminate\Support\Str::limit($post->title, 40) }}</h5>
+                    <p>{{ \Illuminate\Support\Str::limit($post->sentences, 60) }}</p>
                 </div>
             </a>
+            <small>{{ $post->updated_at }}</small>
         @endforeach
     </div>
     <div class="paginate">

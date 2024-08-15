@@ -11,12 +11,12 @@
             @foreach ($histories as $history)
                 <a href="/history/{{ $history->id }}">
                     <div class='post'>
-                        <h2>{{ $history->post->title }}</h2>
-                        <p>{{ $history->post->sentences }}</p>
-                        <small>{{ $history->post->user->name }}</small>
-                        <small>{{ $history->used_at }}</small>
+                        <h2>{{ \Illuminate\Support\Str::limit($history->post->sentences, 40) }}</h2>
+                        <p>{{ \Illuminate\Support\Str::limit($history->post->sentences, 60) }}</p>
                     </div>
                 </a>
+                <small>{{ $history->post->user->name }}</small>
+                <small>{{ $history->used_at }}</small>
                 <?php ++$cnt ?>
                 @if ($cnt==4)
                     <div class="clear"></div>

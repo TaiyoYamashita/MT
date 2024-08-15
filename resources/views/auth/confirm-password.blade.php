@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+        {{ __('ここはアプリケーションの安全な領域です。続行する前にパスワードを確認してください。') }}
     </div>
 
     <form method="POST" action="{{ route('password.confirm') }}">
@@ -8,7 +8,7 @@
 
         <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('パスワード')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"

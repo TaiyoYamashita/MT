@@ -11,12 +11,12 @@
             @foreach ($favorites as $favorite)
                 <a href="/favorite/{{ $favorite->id }}">
                     <div class='post'>
-                        <h2>{{ $favorite->post->title }}</h2>
-                        <p>{{ $favorite->post->sentences }}</p>
-                        <small>{{ $favorite->post->user->name }}</small>
-                        <small>{{ $favorite->saved_at }}</small>
+                        <h2>{{ \Illuminate\Support\Str::limit($favorite->post->title, 40) }}</h2>
+                        <p>{{ \Illuminate\Support\Str::limit($favorite->post->sentences, 60) }}</p>
                     </div>
                 </a>
+                <small>{{ $favorite->post->user->name }}</small>
+                <small>{{ $favorite->saved_at }}</small>
                 <?php ++$cnt ?>
                 @if ($cnt==4)
                     <div class="clear"></div>

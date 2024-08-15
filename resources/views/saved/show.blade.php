@@ -26,7 +26,7 @@
                         <p class="edit-button">編集する</p>
                     </div>
                 </a>
-                <form action="/saved/{{ $post->id }}" id="form_{{ $post->id }}" method="POST">
+                <form action="/saved/{{ $post->id }}/delete" id="form_{{ $post->id }}" method="POST">
                     @csrf
                     @method("PUT")
                     <button class="button delete" type="button" onclick="deletePost({{ $post->id }})">削除する</button>
