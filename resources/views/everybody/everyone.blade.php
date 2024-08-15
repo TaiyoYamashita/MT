@@ -8,11 +8,11 @@
         @foreach ($all_posts as $post)
             <a href="/every/{{ $post->id }}">
                 <div class='post'>
-                    <h2>{{ $post->title }}</h2>
-                    <p>{{ $post->sentences }}</p>
-                    <small>{{ $post->user->name }}</small>
-                    <small>{{ $post->posted_at }}</small>
+                    <h2>{{ \Illuminate\Support\Str::limit($post->title, 40) }}</h2>
+                    <p>{{ \Illuminate\Support\Str::limit($post->sentences, 60) }}</p>
                 </div>
+                <small>{{ $post->user->name }}</small>
+                <small>{{ $post->posted_at }}</small>
             </a>
             <?php ++$cnt ?>
             @if ($cnt==4)
