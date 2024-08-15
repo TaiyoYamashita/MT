@@ -44,18 +44,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    
-    
-    
-    
-    
-    public function posts()
+    public function getName()
     {
-        return $this->hasMany(Post::class);
+        return User::find(Auth::id())->name;
     }
     
-    public function favorites()
+    public function countSaves()
     {
-        return $this->hasMany(Favorite::class);
+        return Post::where('user_id', Auth::id())->where('private_or_public', 1)->count();
+    }
+    
+    public function countPosts()
+    {
+        return Post::where('user_id', Auth::id())->whereIn('private_or_public', [2,3])->count();
+    }
+    
+    public function countFavorites()
+    {
+        return Favorite::where('user_id', Auth::id())->count();
     }
 }

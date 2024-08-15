@@ -26,7 +26,7 @@ class EveryController extends Controller
         return view('everybody.create')->with(['post' => $post]);
     }
     
-    public function duplicate(Request $request, Post $post, History $history)
+    public function save(Request $request, Post $post, History $history)
     {
         $input = ['user_id' => $request->user()->id];
         $input += ['post_id' => $post->id];
@@ -39,7 +39,7 @@ class EveryController extends Controller
         return redirect('/saved/' . $newPost->id);
     }
     
-    public function register(Request $request, Post $post, Favorite $favorite)
+    public function favorite(Request $request, Post $post, Favorite $favorite)
     {
         $input = ['user_id' => $request->user()->id];
         $input += ['post_id' => $post->id];
