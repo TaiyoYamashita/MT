@@ -12,8 +12,9 @@
         @endif
         <div style="clear:left;"></div>
     </x-slot>
-    <h5 name="post[title]">{{ $post->title }}</h5>
+    <small>投稿者：{{ $post->user->name }}</small>
     <small>投稿日時：{{ $post->posted_at }}</small>
+    <h5 name="post[title]">{{ $post->title }}</h5>
     <p name="post[sentences]">{{ $post->sentences }}</p>
     @if ($bool)
         <form action="/search/{{ $post->id }}/delete" method="POST">

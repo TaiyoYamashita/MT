@@ -32,6 +32,11 @@ class History extends Model
         return $this->belongsTo(Post::class);
     }
     
+    public function findHistory($input)
+    {
+        return $this::where('user_id', $input['user_id'])->where('post_id', $input['post_id']);
+    }
+    
     public function getHistoryPaginateByLimit(int $limit = 20)
     {
         return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('used_at', 'DESC')->paginate($limit);
