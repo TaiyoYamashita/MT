@@ -12,18 +12,18 @@ class Tag extends Model
     
     public $timestamps = false;
     
-    public function posts()
+    public function posts ()
     {
         return $this::belongsToMany(Post::class, 'posts_tags', 'tag_id', 'post_id');
     }
     
-    public function display()
+    public function display ()
     {
         return $this::all();
     }
     
     // 検索
-    public function search($tags, $keyword, int $limit = 1)
+    public function search ($tags, $keyword, int $limit = 1)
     {
         $results = Post::where('private_or_public', 2);
         if ($tags !== null) // タグによる抽出
@@ -54,7 +54,7 @@ class Tag extends Model
         return $results->orderBy('posted_at')->paginate($limit);
     }
     
-    public function insertIntoPostsTags(Post $post, int $tag)
+    public function insertIntoPostsTags (Post $post, int $tag)
     {
         DB::table('posts_tags')->insert([
             'post_id' => $post->id,
@@ -62,7 +62,7 @@ class Tag extends Model
         ]);
     }
     
-    public function deleteFromPostsTags(Post $post)
+    public function deleteFromPostsTags (Post $post)
     {
         DB::table('posts_tags')->where('post_id', $post->id)->delete();
     }

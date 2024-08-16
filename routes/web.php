@@ -11,6 +11,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,10 +30,9 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', [TemplateController::class, 'top']);
-Route::get('/register', [TemplateController::class, 'register']);
-
 Route::controller(TemplateController::class)->middleware(['auth'])->group(function () {
+    Route::get('/', 'top');
+    Route::get('/register', 'register');
     Route::get('/everybody', 'everybody')->name('everybody');
     Route::get('/search', 'search')->name('search');
     Route::get('/history', 'history')->name('history');
@@ -89,9 +90,6 @@ Route::controller(SavedController::class)->middleware(['auth'])->group(function 
     Route::put('/saved/{post}/delete', 'deletion');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {
     Route::get('/profile', 'detail')->name('profile.detail');
@@ -100,6 +98,16 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
     Route::delete('/profile', 'destroy')->name('profile.destroy');
 });
 
+Route::get('/dashboard', function () {
+    $user = new User();
+    return view('dashboard')->with([
+        'all_posts' => $user->allPosts(),
+        'saves' => $user->homeSaved(),
+        'posts' => $user->homePosted(),
+        'histories' => $user->homeHistory(),
+        'favorites' => $user->homeFavorite()
+    ]);
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';
