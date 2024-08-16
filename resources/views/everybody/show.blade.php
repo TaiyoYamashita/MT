@@ -11,7 +11,6 @@
     <small>投稿日時：{{ $post->posted_at }}</small>
     <h5 name="post[title]">{{ $post->title }}</h5>
     <p name="post[sentences]">{{ $post->sentences }}</p>
-    <a href="/everybody">戻る</a>
     @if ($bool)
         <form action="/every/{{ $post->id }}/delete" method="POST">
             @csrf
@@ -43,4 +42,5 @@
             @endif
         @endforeach
     @endif
+    <a href="/everybody">戻る</a>
 </x-app-layout>
