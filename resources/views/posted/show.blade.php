@@ -2,8 +2,13 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">投稿した文章</h2>
     </x-slot>
-    <h5>{{ $post->title }}</h5>
+    @if ($tags !== null)
+        @foreach ($tags as $tag)
+            <p>{{ $tag->tag }}</p>
+        @endforeach
+    @endif
     <small>投稿日時：{{ $post->posted_at }}</small>
+    <h5>{{ $post->title }}</h5>
     <p>{{ $post->sentences }}</p>
     <p>メモ</p>
     <p>{{ $post->memorandum }}</p>

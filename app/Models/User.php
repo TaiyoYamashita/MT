@@ -56,12 +56,12 @@ class User extends Authenticatable
     
     public function homeSaved (int $limit = 4)
     {
-        return Post::where('user_id', Auth::id())->where('private_or_public', [2,3])->orderBy('updated_at', 'DESC')->take($limit)->get();
+        return Post::where('user_id', Auth::id())->where('private_or_public', 1)->orderBy('updated_at', 'DESC')->take($limit)->get();
     }
     
     public function homePosted (int $limit = 4)
     {
-        return Post::where('user_id', Auth::id())->where('private_or_public', 1)->orderBy('updated_at', 'DESC')->take($limit)->get();
+        return Post::where('user_id', Auth::id())->where('private_or_public', [2,3])->orderBy('updated_at', 'DESC')->take($limit)->get();
     }
     
     public function homeHistory (int $limit = 1)

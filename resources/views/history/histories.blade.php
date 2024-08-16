@@ -4,14 +4,14 @@
     </x-slot>
     <link rel="stylesheet" href="everybody.css">
     <div class="container">
-        @if (count($histories) == 0)
+        @if (count($histories) === 0)
             <h1>使用履歴がありません</h1>
         @else
             <?php $cnt=0; ?>
             @foreach ($histories as $history)
                 <a href="/history/{{ $history->id }}">
                     <div class='post'>
-                        <h2>{{ \Illuminate\Support\Str::limit($history->post->sentences, 40) }}</h2>
+                        <h2>{{ \Illuminate\Support\Str::limit($history->post->title, 40) }}</h2>
                         <p>{{ \Illuminate\Support\Str::limit($history->post->sentences, 60) }}</p>
                     </div>
                 </a>

@@ -27,5 +27,6 @@ class TagSeeder extends Seeder
         DB::table('tags')->insert([ 'tag' => 'ガクチカ' ]);
         DB::table('tags')->insert([ 'tag' => '自己PR' ]);
         DB::table('tags')->insert([ 'tag' => '企業に対しての文章' ]);
+        DB::table('tags')->insert([ 'tag' => 'その他' ]);
     }
 }

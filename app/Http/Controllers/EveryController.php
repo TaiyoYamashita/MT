@@ -12,24 +12,30 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Favorite;
 use App\Models\History;
+use App\Models\Tag;
 
 class EveryController extends Controller
 {
     public function show(Post $post)
     {
+        $tags = new Tag();
+        $tags = $tags->getTags($post->id);
         $bool = $post->findFavorite();
-        return view('everybody.show')->with(['post' => $post, 'references' => $post->references(), 'bool' => $bool]);
+        return view('everybody.show')->with(['post' => $post, 'tags' => $tags, 'references' => $post->references(), 'bool' => $bool]);
     }
     
     public function create(Post $post)
     {
-        return view('everybody.create')->with(['post' => $post]);
+        $tags = new Tag();
+        return view('everybody.create')->with(['post' => $post, 'tags' => $tags]);
     }
     
-    public function save(Request $request, Post $post, History $history)
+    // 「みんなの投稿」の文章を基に新規文章を作成した際の保存処理
+    public function store(Request $request, Post $post, History $history)
     {
+        // 履歴登録
         $input = ['user_id' => $request->user()->id, 'post_id' => $post->id];
-        $findHistory = $history->findHistory($input)->first();
+        $findHistory = $history->findHistory($input);
         if ($findHistory)
         {
             $findHistory->fill(['used_at' => now()])->save();
@@ -38,11 +44,23 @@ class EveryController extends Controller
         {
             $history->fill($input)->save();
         }
+        
+        // 新規文章の保存 
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         $input += ['reference' => $post->id];
         $newPost = new Post();
         $newPost->fill($input)->save();
+        
+        // posts_tagsテーブルに文章とタグのリレーションを保存
+        $tags = new Tag();
+        if ($request['checkbox'] !== null)
+        {
+            foreach ($request['checkbox'] as $id => $tag)
+            {
+                $tags->insertIntoPostsTags($post, $id);
+            }
+        }
         return redirect('/saved/' . $newPost->id);
     }
     

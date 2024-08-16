@@ -2,8 +2,14 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">みんなの投稿</h2>
     </x-slot>
-    <h5 name="post[title]">{{ $post->title }}</h5>
+    @if (count($tags) > 0)
+        @foreach ($tags as $tag)
+            <p>{{ $tag->tag }}</p>
+        @endforeach
+    @endif
+    <small>投稿者：{{ $post->user->name }}</small>
     <small>投稿日時：{{ $post->posted_at }}</small>
+    <h5 name="post[title]">{{ $post->title }}</h5>
     <p name="post[sentences]">{{ $post->sentences }}</p>
     <a href="/everybody">戻る</a>
     @if ($bool)

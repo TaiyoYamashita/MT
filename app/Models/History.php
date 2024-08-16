@@ -27,6 +27,11 @@ class History extends Model
         return $this->belongsTo(User::class);
     }
     
+    public function findHistory ($input)
+    {
+        return $this::where('user_id', $input['user_id'])->where('post_id', $input['post_id'])->first();
+    }
+    
     public function post ()
     {
         return $this->belongsTo(Post::class);

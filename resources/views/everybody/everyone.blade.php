@@ -4,22 +4,26 @@
     </x-slot>
     <link rel="stylesheet" href="everybody.css">
     <div class="container">
-        <?php $cnt=0; ?>
-        @foreach ($all_posts as $post)
-            <a href="/every/{{ $post->id }}">
-                <div class='post'>
-                    <h2>{{ \Illuminate\Support\Str::limit($post->title, 40) }}</h2>
-                    <p>{{ \Illuminate\Support\Str::limit($post->sentences, 60) }}</p>
-                </div>
-                <small>{{ $post->user->name }}</small>
-                <small>{{ $post->posted_at }}</small>
-            </a>
-            <?php ++$cnt ?>
-            @if ($cnt==4)
-                <div class="clear"></div>
-                <?php $cnt=0 ?>
-            @endif
-        @endforeach
+        @if (count($all_posts) > 0)
+            <?php $cnt=0; ?>
+            @foreach ($all_posts as $post)
+                <a href="/every/{{ $post->id }}">
+                    <div class='post'>
+                        <h2>{{ \Illuminate\Support\Str::limit($post->title, 40) }}</h2>
+                        <p>{{ \Illuminate\Support\Str::limit($post->sentences, 60) }}</p>
+                    </div>
+                    <small>{{ $post->user->name }}</small>
+                    <small>{{ $post->posted_at }}</small>
+                </a>
+                <?php ++$cnt ?>
+                @if ($cnt==4)
+                    <div class="clear"></div>
+                    <?php $cnt=0 ?>
+                @endif
+            @endforeach
+        @else
+            <p>投稿された文章がありません</p>
+        @endif
         <div class="clear"></div>
         <div class="paginate">
            {{ $all_posts->links() }}
