@@ -20,20 +20,33 @@ class HistoryController extends Controller
     
     public function store(Request $request, History $history)
     {
+        // 使用に知事の更新
+        $input = ['used_at' => now()];
+        $history->fill($input)->save();
+        
+        // 新規文章の保存
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         $input += ['reference' => $history->post_id];
-        $post = new Post();
-        $post->fill($input)->save();
-        $input = ['used_at' => now()];
-        $history->fill($input)->save();
-        return redirect('/saved/' . $post->id);
+        $newPost = new Post();
+        $newPost->fill($input)->save();
+        
+        // posts_tagsテーブルに文章とタグのリレーションを保存
+        $tags = new Tag();
+        if ($request['checkbox'] !== null)
+        {
+            foreach ($request['checkbox'] as $id => $tag)
+            {
+                $tags->insertIntoPostsTags($newPost, $id);
+            }
+        }
+        return redirect('/saved/' . $newPost->id);
     }
     
     public function create(History $history)
     {
         $post = $history->post;
-        return view('history.create')->with(['post' => $post, 'history' => $history]);
+        return view('history.create')->with(['post' => $post, 'history' => $history, 'tags'=> Tag::all()]);
     }
     
     public function delete(History $history)

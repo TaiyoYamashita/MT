@@ -9,14 +9,19 @@ use App\Models\Tag;
 
 class PostedController extends Controller
 {
-    public function show(Post $post)
+    public function show (Post $post)
     {
         $tags = new Tag();
         $tags = $tags->getTags($post->id);
         return view('posted.show')->with(['post' => $post, 'tags' => $tags]);
     }
     
-    public function save(Post $post)
+    public function create (Post $post)
+    {
+        return view('posted.create')->with(['post' => $post, 'tags' => Tag::all()]);
+    }
+    
+    public function save (Post $post)
     {
         $input = ['private_or_public' => 1];
         $post->fill($input)->save();

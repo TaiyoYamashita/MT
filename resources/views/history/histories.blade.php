@@ -4,9 +4,7 @@
     </x-slot>
     <link rel="stylesheet" href="everybody.css">
     <div class="container">
-        @if (count($histories) === 0)
-            <h1>使用履歴がありません</h1>
-        @else
+        @if (count($histories) > 0)
             <?php $cnt=0; ?>
             @foreach ($histories as $history)
                 <a href="/history/{{ $history->id }}">
@@ -23,6 +21,8 @@
                     <?php $cnt=0 ?>
                 @endif
             @endforeach
+        @else
+            <h1>使用履歴がありません</h1>
         @endif
         <div class="clear"></div>
         <div class="paginate">

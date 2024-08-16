@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="float:left">検索　　</h2>
-        @if ($tags !== null)
+        @if ($keytags !== null)
             <p style="float:left;">選択タグ：</p>
-            @foreach ($tags as $tag)
-                <p style="float:left;">{{ $tag }}　</p>
+            @foreach ($keytags as $keytag)
+                <p style="float:left;">{{ $keytag }}　</p>
             @endforeach
         @endif
         @if ($keyword !== null)
@@ -28,8 +28,8 @@
             <button type="submit">お気に入りに登録する</button>
         </form>
     @endif
-    @if ($tags !== null)
-        <a href="/search/{{ $post->id }}/create?tags={{ urlencode(json_encode($tags)) }}&keyword={{ urlencode($keyword) }}">この投稿を基に文章を作成する</a>
+    @if ($keytags !== null)
+        <a href="/search/{{ $post->id }}/create?tags={{ urlencode(json_encode($keytags)) }}&keyword={{ urlencode($keyword) }}">この投稿を基に文章を作成する</a>
     @else
         <a href="/search/{{ $post->id }}/create?keyword={{ urlencode($keyword) }}">この投稿を基に文章を作成する</a>
     @endif
@@ -51,8 +51,8 @@
             @endif
         @endforeach
     @endif
-    @if ($tags !== null)
-        <a href="/search2?tags={{ urlencode(json_encode($tags)) }}&keyword={{ urlencode($keyword) }}">戻る</a>
+    @if ($keytags !== null)
+        <a href="/search2?tags={{ urlencode(json_encode($keytags)) }}&keyword={{ urlencode($keyword) }}">戻る</a>
     @else
         <a href="/search2?keyword={{ urlencode($keyword) }}">戻る</a>
     @endif
