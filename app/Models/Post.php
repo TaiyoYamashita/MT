@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -42,7 +43,12 @@ class Post extends Model
     
     public function references()
     {
-        return $this->belongsTo(Post::class, 'reference');
+        return $this::with('user')->where('reference', $this->id)->where('private_or_public', 3)->get();
+    }
+    
+    public function example()
+    {
+        return $this->reference !== null && Post::find($this->reference)->private_or_public === 2;
     }
     
     public function findFavorite()

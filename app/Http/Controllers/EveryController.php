@@ -18,7 +18,7 @@ class EveryController extends Controller
     public function show(Post $post)
     {
         $bool = $post->findFavorite();
-        return view('everybody.show')->with(['post' => $post, 'references' => $post->references, 'bool' => $bool]);
+        return view('everybody.show')->with(['post' => $post, 'references' => $post->references(), 'bool' => $bool]);
     }
     
     public function create(Post $post)

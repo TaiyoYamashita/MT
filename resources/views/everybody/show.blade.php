@@ -26,7 +26,7 @@
                 <div class='post'>
                     <h2>{{ $reference->title }}</h2>
                     <p>{{ $reference->sentences }}</p>
-                    <small>{{ $reference->user->name }}</small>
+                    <small>{{ $reference->name }}</small>
                     <small>{{ $reference->posted_at }}</small>
                 </div>
             </a>

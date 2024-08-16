@@ -36,7 +36,7 @@
                         <p class="back-button">戻る</p>
                     </div>
                 </a>
-                @if($post->reference !== null && $post->references && $post->references->private_or_public > 1)
+                @if($bool)
                     <form action="/saved/{{ $post->id }}/example" method="POST">
                         @csrf
                         @method('PUT')

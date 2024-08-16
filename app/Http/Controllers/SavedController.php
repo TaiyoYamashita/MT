@@ -35,7 +35,7 @@ class SavedController extends Controller
     
     public function show(Post $post)
     {
-        return view('saved.show')->with(['post' => $post]);
+        return view('saved.show')->with(['post' => $post, 'bool' => $post->example()]);
     }
     
     public function save(){

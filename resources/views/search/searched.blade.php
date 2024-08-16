@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="float:left">検索　　</h2>
         @if ($tags !== null)
             <p style="float:left;">選択タグ：</p>
-            @foreach ($tags as $tag)
+            @foreach ($tags as $id => $tag)
                 <p style="float:left;">{{ $tag }}　</p>
             @endforeach
         @endif
@@ -20,7 +20,7 @@
             <?php $cnt=0; ?>
             @foreach ($results as $result)
                 @if ($tags !== null)
-                    <a href="/search/{{ $result->id }}?tags={{ urlencode(implode(',', $tags)) }}&keyword={{ urlencode($keyword) }}">
+                    <a href="/search/{{ $result->id }}?tags={{ urlencode(json_encode($tags)) }}&keyword={{ urlencode($keyword) }}">
                 @else
                     <a href="/search/{{ $result->id }}?keyword={{ urlencode($keyword) }}">
                 @endif
