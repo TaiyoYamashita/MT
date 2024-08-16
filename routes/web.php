@@ -51,10 +51,10 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
 
 Route::controller(SearchController::class)->middleware(['auth'])->group(function () {
     Route::get('/search/{post}', 'show');
+    Route::get('/search/{post}/create', 'create');
     Route::get('/search2', 'search2');
     Route::post('/search', 'search');
     Route::post('/search/{post}/favorite', 'favorite');
-    Route::post('/search/{post}/saved', 'save');
     Route::delete('/search/{post}/delete', 'delete');
 });
 

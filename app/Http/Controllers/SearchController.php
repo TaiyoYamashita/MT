@@ -25,7 +25,7 @@ class SearchController extends Controller
     
     public function search2(Request $request)
     {
-        $tags = explode(',', $request->query('tags'));
+        $tags = json_decode($request->input('tags'), true);
         $keyword = $request->query('keyword');
         $results = new Tag();
         $results = $results->search($tags, $keyword);
@@ -34,10 +34,17 @@ class SearchController extends Controller
     
     public function show(Request $request, Post $post)
     {
-        $tags = explode(',', $request->query('tags'));
+        $tags = json_decode($request->input('tags'), true);
         $keyword = $request->query('keyword');
         $bool = $post->findFavorite();
-        return view('search.show')->with(['post' => $post, 'references' => $post->references, 'bool' => $bool, 'tags' => $tags, 'keyword' => $keyword]);
+        return view('search.show')->with(['post' => $post, 'references' => $post->references(), 'bool' => $bool, 'tags' => $tags, 'keyword' => $keyword]);
+    }
+    
+    public function create(Request $request, Post $post)
+    {
+        $tags = json_decode($request->input('tags'), true);
+        $keyword = $request->query('keyword');
+        return view('search.create')->with(['post' => $post, 'tags' => $tags, 'keyword' => $keyword]);
     }
     
     public function save(Request $request, Post $post, History $history) //文章を保存したときに履歴にぶち込む
