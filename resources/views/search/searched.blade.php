@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="float:left">検索　　</h2>
-        @if ($tags !== null)
+        @if ($keytags !== null)
             <p style="float:left;">選択タグ：</p>
-            @foreach ($tags as $id => $tag)
-                <p style="float:left;">{{ $tag }}　</p>
+            @foreach ($keytags as $id => $keytag)
+                <p style="float:left;">{{ $keytag }}　</p>
             @endforeach
         @endif
         @if ($keyword !== null)
@@ -19,8 +19,8 @@
         @else
             <?php $cnt=0; ?>
             @foreach ($results as $result)
-                @if ($tags !== null)
-                    <a href="/search/{{ $result->id }}?tags={{ urlencode(json_encode($tags)) }}&keyword={{ urlencode($keyword) }}">
+                @if ($keytags !== null)
+                    <a href="/search/{{ $result->id }}?tags={{ urlencode(json_encode($keytags)) }}&keyword={{ urlencode($keyword) }}">
                 @else
                     <a href="/search/{{ $result->id }}?keyword={{ urlencode($keyword) }}">
                 @endif

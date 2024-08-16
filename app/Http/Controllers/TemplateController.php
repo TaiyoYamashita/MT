@@ -24,8 +24,8 @@ class TemplateController extends Controller
         return view('everybody.everyone')->with(['all_posts' => $post->getPublicPaginateByLimit()]);
     }
     
-    public function search(Tag $tags){
-        return view('search.tags')->with(['tags' => $tags->display()]);
+    public function search(){
+        return view('search.tags')->with(['tags' => Tag::all()]);
     }
     
     public function history(History $history){
@@ -43,6 +43,11 @@ class TemplateController extends Controller
     
     public function posted(Post $post){
         return view('posted.posts')->with(['own_posts' => $post->getPostedPaginateByLimit()]);
+    }
+    
+    public function create(Post $post)
+    {
+        return view('template.create')->with(['post' => $post, 'tags' => Tag::all(), 'form' => 'every']);
     }
     
     public function paper(){

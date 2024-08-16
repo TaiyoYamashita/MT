@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">新規文章の作成</h2>
     </x-slot>
-    <form action="/favorite/{{ $post->id }}/saved" method="POST">
+    <form action="/every/{{ $post->id }}/store" method="POST">
         @csrf
         <div class="title">
             <p>タイトル</p>
@@ -16,6 +16,10 @@
             <p>メモ</p>
             <textarea name="post[memorandum]"></textarea>
         </div>
+        @foreach ($tags as $tag)
+            <input name="checkbox[{{ $tag->id }}]" type="checkbox" value="{{ $tag->tag }}">
+            <p>{{ $tag->tag }}</p>
+        @endforeach
         <input type="submit" value="保存">
     </form>
     <a href="/favorite/{{ $favorite->id }}">戻る</a>

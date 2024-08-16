@@ -17,5 +17,6 @@
         @method('PUT')
         <input type="submit" value="投稿を取り消す"/>
     </form>
+    <a href="/posted/{{ $post->id }}/create">この投稿を基に文章を作成する</a>
     <a href="/posted">戻る</a>
 </x-app-layout>

@@ -24,16 +24,11 @@ class EveryController extends Controller
         return view('everybody.show')->with(['post' => $post, 'tags' => $tags, 'references' => $post->references(), 'bool' => $bool]);
     }
     
-    public function create(Post $post)
-    {
-        $tags = new Tag();
-        return view('everybody.create')->with(['post' => $post, 'tags' => $tags]);
-    }
-    
     // 「みんなの投稿」の文章を基に新規文章を作成した際の保存処理
-    public function store(Request $request, Post $post, History $history)
+    public function store(Request $request, Post $post)
     {
         // 履歴登録
+        $history = new History();
         $input = ['user_id' => $request->user()->id, 'post_id' => $post->id];
         $findHistory = $history->findHistory($input);
         if ($findHistory)
@@ -58,9 +53,10 @@ class EveryController extends Controller
         {
             foreach ($request['checkbox'] as $id => $tag)
             {
-                $tags->insertIntoPostsTags($post, $id);
+                $tags->insertIntoPostsTags($newPost, $id);
             }
         }
+        
         return redirect('/saved/' . $newPost->id);
     }
     

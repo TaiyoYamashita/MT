@@ -10,10 +10,24 @@ use App\Models\Tag;
 
 class SavedController extends Controller
 {
-    public function create()
+    // CSSの読み込み
+    public function save(){
+        $path = public_path('save.css');
+        $content = File::get($path);
+        $type = File::mineType($path);
+        return response($content,200)->header('Content-Type',$type);
+    }
+    
+    public function show(Post $post)
     {
         $tags = new Tag();
-        return view('saved.create')->with(['tags' => $tags->display()]);
+        $tags = $tags->getTags($post->id);
+        return view('saved.show')->with(['post' => $post, 'tags' => $tags, 'bool' => $post->example()]);
+    }
+    
+    public function create()
+    {
+        return view('saved.create')->with(['tags' => Tag::all()]);
     }
     
     public function store(Request $request, Post $post) // request編集必要
@@ -34,21 +48,6 @@ class SavedController extends Controller
             }
         }
         return redirect('/saved/' . $post->id);
-    }
-    
-    public function show(Post $post)
-    {
-        $tags = new Tag();
-        $tags = $tags->getTags($post->id);
-        return view('saved.show')->with(['post' => $post, 'tags' => $tags, 'bool' => $post->example()]);
-    }
-    
-    // CSSの読み込み
-    public function save(){
-        $path = public_path('save.css');
-        $content = File::get($path);
-        $type = File::mineType($path);
-        return response($content,200)->header('Content-Type',$type);
     }
     
     public function edit(Post $post)
@@ -73,6 +72,7 @@ class SavedController extends Controller
         return redirect('/saved/' . $post->id);
     }
     
+    // 投稿する
     public function post (Post $post)
     {
         $post = Post::findOrFail($post->id);

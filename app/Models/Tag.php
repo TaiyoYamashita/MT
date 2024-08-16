@@ -17,11 +17,6 @@ class Tag extends Model
         return $this::belongsToMany(Post::class, 'posts_tags', 'tag_id', 'post_id');
     }
     
-    public function display ()
-    {
-        return $this::all();
-    }
-    
     public function getTags (int $postId)
     {
         $tagIds = DB::table('posts_tags')->where('post_id', $postId)->pluck('tag_id');

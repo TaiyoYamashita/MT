@@ -1,6 +1,7 @@
 <?php
 URL::forceScheme('https');
 
+use App\Http\Controllers\CreateController;
 use App\Http\Controllers\EveryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HistoryController;
@@ -30,9 +31,14 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/{form}/{post}/create', function ($post) {
+    $lim = 10; // ここで定数を定義
+    return app(ServeController::class)->serve($post, $lim);
+});
+
 Route::controller(TemplateController::class)->middleware(['auth'])->group(function () {
-    Route::get('/', 'top');
-    Route::get('/register', 'register');
+    Route::get('/', 'top'); // ログイン画面
+    Route::get('/register', 'register'); // 新規登録
     Route::get('/everybody', 'everybody')->name('everybody');
     Route::get('/search', 'search')->name('search');
     Route::get('/history', 'history')->name('history');
@@ -45,15 +51,15 @@ Route::controller(TemplateController::class)->middleware(['auth'])->group(functi
 Route::controller(EveryController::class)->middleware(['auth'])->group(function () {
     Route::get('/every/{post}', 'show');
     Route::get('/every/{post}/create', 'create');
+    Route::get('/every/{post}/store', 'store');
     Route::post('/every/{post}/favorite', 'favorite');
-    Route::post('/every/{post}/saved', 'store');
     Route::delete('/every/{post}/delete', 'delete');
 });
 
 Route::controller(SearchController::class)->middleware(['auth'])->group(function () {
     Route::get('/search/{post}', 'show');
     Route::get('/search/{post}/create', 'create');
-    Route::get('/search2', 'search2');
+    Route::get('/search2', 'search2'); // 詳細画面から検索結果に戻る
     Route::post('/search', 'search');
     Route::post('/search/{post}/favorite', 'favorite');
     Route::delete('/search/{post}/delete', 'delete');
@@ -62,19 +68,21 @@ Route::controller(SearchController::class)->middleware(['auth'])->group(function
 Route::controller(FavoriteController::class)->middleware(['auth'])->group(function () {
     Route::get('/favorite/{favorite}', 'show');
     Route::get('/favorite/{favorite}/create', 'create');
-    Route::post('/favorite/{post}/saved', 'store');
+    Route::post('/favorite/{post}/store', 'store');
     Route::delete('/favorite/{favorite}', 'delete');
 });
 
 Route::controller(HistoryController::class)->middleware(['auth'])->group(function () {
     Route::get('/history/{history}', 'show');
     Route::get('/history/{history}/create', 'create');
-    Route::post('history/{history}/saved', 'store');
+    Route::post('history/{history}/store', 'store');
     Route::delete('/history/{history}', 'delete');
 });
 
 Route::controller(PostedController::class)->middleware(['auth'])->group(function () {
    Route::get('/posted/{post}', 'show'); 
+   Route::get('/posted/{post}/create', 'create');
+   Route::post('/posted/{post}/store', 'store');
    Route::put('/posted/{post}/save', 'save');
 });
 
