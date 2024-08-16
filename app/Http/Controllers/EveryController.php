@@ -28,9 +28,16 @@ class EveryController extends Controller
     
     public function save(Request $request, Post $post, History $history)
     {
-        $input = ['user_id' => $request->user()->id];
-        $input += ['post_id' => $post->id];
-        $history->fill($input)->save();
+        $input = ['user_id' => $request->user()->id, 'post_id' => $post->id];
+        $findHistory = $history->findHistory($input)->first();
+        if ($findHistory)
+        {
+            $findHistory->fill(['used_at' => now()])->save();
+        }
+        else
+        {
+            $history->fill($input)->save();
+        }
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         $input += ['reference' => $post->id];

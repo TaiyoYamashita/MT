@@ -22,17 +22,17 @@ class History extends Model
     
     public $timestamps = false;
     
-    public function user()
+    public function user ()
     {
         return $this->belongsTo(User::class);
     }
     
-    public function post()
+    public function post ()
     {
         return $this->belongsTo(Post::class);
     }
     
-    public function getHistoryPaginateByLimit(int $limit = 20)
+    public function getHistoryPaginateByLimit (int $limit = 20)
     {
         return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('used_at', 'DESC')->paginate($limit);
     }

@@ -22,20 +22,18 @@ class Favorite extends Model
     
     public $timestamps = false;
     
-    public function user()
+    public function user ()
     {
         return $this->belongsTo(User::class);
     }
     
-    public function post()
+    public function post ()
     {
         return $this->belongsTo(Post::class);
     }
     
-    //Userモデルで呼び出す？
-    public function getFavoritePaginateByLimit(int $limit = 20)
+    public function getFavoritePaginateByLimit (int $limit = 20)
     {
-        //return $this::with('posts')->find(Auth::id())->post()->orderBy('updated_at', 'DESC')->paginate($limit);
         return $this::with(['user','post'])->where('user_id', Auth::id())->orderBy('saved_at', 'DESC')->paginate($limit);
     }
 }
