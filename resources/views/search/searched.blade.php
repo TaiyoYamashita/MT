@@ -25,7 +25,7 @@
                     <a href="/search/{{ $result->id }}?keyword={{ urlencode($keyword) }}">
                 @endif
                     <div class='post'>
-                        <h2>{{ \Illuminate\Support\Str::limit($result->sentences, 40) }}</h2>
+                        <h2>{{ \Illuminate\Support\Str::limit($result->title, 40) }}</h2>
                         <p>{{ \Illuminate\Support\Str::limit($result->sentences, 60) }}</p>
                     </div>
                 </a>

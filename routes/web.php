@@ -46,7 +46,7 @@ Route::controller(EveryController::class)->middleware(['auth'])->group(function 
     Route::get('/every/{post}', 'show');
     Route::get('/every/{post}/create', 'create');
     Route::post('/every/{post}/favorite', 'favorite');
-    Route::post('/every/{post}/saved', 'save');
+    Route::post('/every/{post}/saved', 'store');
     Route::delete('/every/{post}/delete', 'delete');
 });
 

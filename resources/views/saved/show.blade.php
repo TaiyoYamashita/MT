@@ -5,8 +5,13 @@
     </x-slot>
     <div class="background">
         <div class="container">
-            <h1 class="title" name="post[title]">{{ $post->title }}</h1>
+            @if ($tags !== null)
+                @foreach ($tags as $tag)
+                    <p>{{ $tag->tag }}</p>
+                @endforeach
+            @endif
             <small class="date">編集日時：{{ $post->updated_at }}</small>
+            <h1 class="title" name="post[title]">{{ $post->title }}</h1>
             <div class="clear"></div>
             <div class="paper">
                 <div class="sentences">

@@ -22,6 +22,19 @@ class Tag extends Model
         return $this::all();
     }
     
+    public function getTags (int $postId)
+    {
+        $tagIds = DB::table('posts_tags')->where('post_id', $postId)->pluck('tag_id');
+        if ($tagIds->isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return DB::table('tags')->whereIn('id', $tagIds)->get();
+        }
+    }
+    
     // 検索
     public function search ($tags, $keyword, int $limit = 1)
     {

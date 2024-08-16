@@ -5,15 +5,19 @@
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <a href="/saved/create">新規作成</a>
-        @foreach($own_posts as $post)
-            <a href="/saved/{{ $post->id }}">
-                <div class="element">
-                    <h5>{{ \Illuminate\Support\Str::limit($post->title, 40) }}</h5>
-                    <p>{{ \Illuminate\Support\Str::limit($post->sentences, 60) }}</p>
-                </div>
-            </a>
-            <small>{{ $post->updated_at }}</small>
-        @endforeach
+        @if (count($own_posts) > 0)
+            @foreach($own_posts as $post)
+                <a href="/saved/{{ $post->id }}">
+                    <div class="element">
+                        <h5>{{ \Illuminate\Support\Str::limit($post->title, 40) }}</h5>
+                        <p>{{ \Illuminate\Support\Str::limit($post->sentences, 60) }}</p>
+                    </div>
+                </a>
+                <small>{{ $post->updated_at }}</small>
+            @endforeach
+        @else
+            <p>保存中の文章がありません</p>
+        @endif
     </div>
     <div class="paginate">
         {{ $own_posts->links() }}

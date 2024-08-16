@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostedController extends Controller
 {
     public function show(Post $post)
     {
-        return view('posted.show')->with(['post' => $post]);
+        $tags = new Tag();
+        $tags = $tags->getTags($post->id);
+        return view('posted.show')->with(['post' => $post, 'tags' => $tags]);
     }
     
     public function save(Post $post)

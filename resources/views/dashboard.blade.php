@@ -5,11 +5,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="margin-bottom: 40px">
                 <div class="p-6 text-gray-900">
                     <div class="home saved">
-                        <h2>保存した文章</h2>
-                        @if ($all_posts !== null)
+                        <h2>みんなの投稿</h2>
+                        @if (count($all_posts) > 0)
                             @foreach ($all_posts as $post)
                                 <a href="/every/{{ $post->id }}">
                                     <div class="saves">
@@ -24,9 +24,13 @@
                             <p>投稿された文章がありません</p>
                         @endif
                     </div>
+                </div>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="margin-bottom: 40px">
+                <div class="p-6 text-gray-900">
                     <div class="home saved">
-                        <h2>保存した文章</h2>
-                        @if ($saves !== null)
+                        <h2>保存中の文章</h2>
+                        @if (count($saves) > 0)
                             @foreach ($saves as $save)
                                 <a href="/saved/{{ $save->id }}">
                                     <div class="saves">
@@ -40,9 +44,13 @@
                             <p>保存中の文章がありません</p>
                         @endif
                     </div>
+                </div>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="margin-bottom: 40px">
+                <div class="p-6 text-gray-900">
                     <div class="home posted">
                         <h2>投稿した文章</h2>
-                        @if ($posts !== null)
+                        @if (count($posts) > 0)
                             @foreach ($posts as $post)
                                 <a href="/posted/{{ $post->id }}">
                                     <div class="saves">
@@ -56,9 +64,13 @@
                             <p>投稿した文章がありません</p>
                         @endif
                     </div>
+                </div>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="margin-bottom: 40px">
+                <div class="p-6 text-gray-900">
                     <div class"home history">
                         <h2>使用履歴</h2>
-                        @if ($histories !== null)
+                        @if (count($histories) > 0)
                             @foreach ($histories as $history)
                                 <a href="/history/{{ $history->id }}">
                                     <div class="saves">
@@ -73,9 +85,13 @@
                             <p>使用履歴がありません</p>
                         @endif
                     </div>
+                </div>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
                     <div class="home favorites">
                         <h2>お気に入り</h2>
-                        @if ($favorites !== null)
+                        @if (count($favorites) > 0)
                             @foreach ($favorites as $favorite)
                                 <a href="/favorite/{{ $favorite->id }}">
                                     <div class="saves">

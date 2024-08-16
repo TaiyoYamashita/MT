@@ -18,10 +18,13 @@ class SavedController extends Controller
     
     public function store(Request $request, Post $post) // request編集必要
     {
+        // 新規文章の保存
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         $input += ['reference' => null];
         $post->fill($input)->save();
+        
+        // posts_tagsテーブルに文章とタグのリレーションを保存
         $tags = new Tag();
         if ($request['checkbox'] !== null)
         {
@@ -35,9 +38,12 @@ class SavedController extends Controller
     
     public function show(Post $post)
     {
-        return view('saved.show')->with(['post' => $post, 'bool' => $post->example()]);
+        $tags = new Tag();
+        $tags = $tags->getTags($post->id);
+        return view('saved.show')->with(['post' => $post, 'tags' => $tags, 'bool' => $post->example()]);
     }
     
+    // CSSの読み込み
     public function save(){
         $path = public_path('save.css');
         $content = File::get($path);
@@ -67,7 +73,7 @@ class SavedController extends Controller
         return redirect('/saved/' . $post->id);
     }
     
-    public function post(Post $post)
+    public function post (Post $post)
     {
         $post = Post::findOrFail($post->id);
         $post->private_or_public = 2;
@@ -76,6 +82,7 @@ class SavedController extends Controller
         return redirect('/posted/' . $post->id);
     }
     
+    // 作成例としての投稿
     public function example(Post $post)
     {
         $input = ['private_or_public' => 3];
