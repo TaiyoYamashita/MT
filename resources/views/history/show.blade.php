@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">使用履歴</h2>
     </x-slot>
     <h5 name="post[title]">{{ $history->post->title }}</h5>
+    <small>投稿者：{{ $history->user->name }}</small>
     <small>使用日時：{{ $history->used_at }}</small>
     <p name="post[sentences]">{{ $history->post->sentences }}</p>
     <form action="/history/{{ $history->id }}" method="POST">
