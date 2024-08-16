@@ -3,9 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">みんなの投稿</h2>
     </x-slot>
     <h5 name="post[title]">{{ $post->title }}</h5>
+    <small>投稿者：{{ $post->user->name }}</small>
     <small>投稿日時：{{ $post->posted_at }}</small>
     <p name="post[sentences]">{{ $post->sentences }}</p>
-    <a href="/everybody">戻る</a>
     @if ($bool)
         <form action="/every/{{ $post->id }}/delete" method="POST">
             @csrf
@@ -37,4 +37,5 @@
             @endif
         @endforeach
     @endif
+    <a href="/everybody">戻る</a>
 </x-app-layout>
